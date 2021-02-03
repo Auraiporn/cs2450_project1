@@ -5,12 +5,18 @@
  */
 package team_penguin.cs2450_project1;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JFrame;
+import javax.swing.Timer;
+import javax.swing.WindowConstants;
+
 /**
  *
  * @author Haowen Yin
  */
-public class StartScreen extends javax.swing.JFrame {
-
+public class StartScreen extends javax.swing.JFrame  {
+    
     /**
      * Creates new form StartScreen
      */
@@ -29,7 +35,7 @@ public class StartScreen extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        nextButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hang Man Game");
@@ -48,8 +54,13 @@ public class StartScreen extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setText("By: Team Penguin");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Next");
+        nextButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nextButton.setText("Next");
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -66,7 +77,7 @@ public class StartScreen extends javax.swing.JFrame {
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(275, 275, 275)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -75,7 +86,7 @@ public class StartScreen extends javax.swing.JFrame {
                 .addGap(51, 51, 51)
                 .addComponent(jLabel1)
                 .addGap(161, 161, 161)
-                .addComponent(jButton1)
+                .addComponent(nextButton)
                 .addGap(37, 37, 37)
                 .addComponent(jLabel2)
                 .addContainerGap(53, Short.MAX_VALUE))
@@ -85,6 +96,12 @@ public class StartScreen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    // This method handles the click next button if a user clicks next, then a main screen will appear
+    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
+         MainScreen mainScreen = new MainScreen();
+         mainScreen.setVisible(true);
+    }//GEN-LAST:event_nextButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -114,16 +131,37 @@ public class StartScreen extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new StartScreen().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new StartScreen().setVisible(true);
         });
-    }
+           
+        // Set the startScreen appears for 3 sec and then use actionPerformed method to create a new activity (go to mainScreen)
+        int delay = 3000; // 3000 miliseconds = 3 seconds
+        ActionListener taskPerformer = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Perform a task --> we want to go to a mainScreen 
+                System.out.println("Already displayed for 3 sec, and going to a main screen now...");
+                MainScreen mainScreen = new MainScreen();
+                mainScreen.setVisible(true);
+            }
+        };
+        Timer timer = new Timer(delay, taskPerformer);
+        timer.setRepeats(false);
+        timer.start();
+
+        }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton nextButton;
     // End of variables declaration//GEN-END:variables
+
+    
+
+   
+    
+
+        
 }
