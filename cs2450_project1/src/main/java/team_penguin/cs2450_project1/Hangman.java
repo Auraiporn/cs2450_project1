@@ -9,13 +9,79 @@ package team_penguin.cs2450_project1;
  *
  * @author acer
  */
+
+import java.util.Random;
+import java.util.ArrayList;
+
 public class Hangman extends javax.swing.JFrame {
 
     /**
      * Creates new form Hangman
      */
+    
+    public static String hangmanWord()
+    {
+        //Random number generator
+        Random rand = new Random();
+        // List of possible hangman words
+        String[] words = {"abstract", "cemetery", "nurse", "pharmacy", "climbing"};
+        // random select a position 
+        return words[rand.nextInt(words.length)];
+    }
+    public static <T> void printAry(T[] ary)
+    {
+        for(int i = 0; i < ary.length; i++)
+        {
+            System.out.print(ary[i] + ", ");
+        }
+        System.out.print("\n");
+    }
+    public static void init(Integer[] ary)
+    {
+        for(int i = 0; i < ary.length; i++)
+        {
+            ary[i] = 0;
+        }
+    }
+    public static Integer[] mark(Integer[] ary, ArrayList<Integer> position)
+    {
+        for(int i = 0; i < position.size(); i++)
+        {
+            ary[position.get(i)]=1;
+        }
+        return ary;
+    }
+    public static ArrayList<Integer> search(String word, char alphabet)
+    {
+        ArrayList<Integer> positions = new ArrayList<Integer>();
+        for(int i = 0; i < word.length(); i++)
+        {
+            if(word.charAt(i) == alphabet)
+            {
+                positions.add(i);
+            }
+        }
+        return positions;
+    }
     public Hangman() {
         initComponents();
+        
+        //Select a word for guess
+        //String word = hangmanWord();
+        String word = "abstract";
+        System.out.println(word);
+        
+        //Guess array
+        Integer[] guess = new Integer[word.length()];
+        //Initialize to 0
+        init(guess);
+        
+        // Test mark
+        mark(guess,search(word,'a'));
+        
+        //Testing print out
+        printAry(guess);
+        
     }
 
     /**
