@@ -10,6 +10,8 @@ package team_penguin.cs2450_project1;
  * @author acer
  */
 public class MainScreen extends javax.swing.JFrame {
+    
+//    MainScreen  mainScreen  = new  MainScreen();
 
     /**
      * Creates new form MainScreen
@@ -101,16 +103,19 @@ public class MainScreen extends javax.swing.JFrame {
     private void highScoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highScoreButtonActionPerformed
        ScoreScreen ss = new ScoreScreen();
        ss.setVisible(true);
+    //   mainScreen.setVisible(false);
     }//GEN-LAST:event_highScoreButtonActionPerformed
 
     private void creditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditButtonActionPerformed
         CreditScreen cs = new CreditScreen();
         cs.setVisible(true);
+     //   mainScreen.setVisible(false);
     }//GEN-LAST:event_creditButtonActionPerformed
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
         Hangman h = new Hangman();
         h.setVisible(true);
+      //  mainScreen.setVisible(false);
     }//GEN-LAST:event_playButtonActionPerformed
 
     /**
@@ -139,11 +144,12 @@ public class MainScreen extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        MainScreen  mainScreen  = new  MainScreen();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainScreen().setVisible(true);
+                 mainScreen.setVisible(true);
+               
             }
         });
     }
