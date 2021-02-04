@@ -112,6 +112,7 @@ public class ScoreScreen extends javax.swing.JFrame {
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         MainScreen mainScreen = new MainScreen();
         mainScreen.setVisible(true);
+        dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
     /**
