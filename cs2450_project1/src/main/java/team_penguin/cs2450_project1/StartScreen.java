@@ -129,10 +129,11 @@ public class StartScreen extends javax.swing.JFrame  {
             java.util.logging.Logger.getLogger(StartScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        StartScreen startScreen = new StartScreen();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new StartScreen().setVisible(true);
+            startScreen.setVisible(true);
+          
         });
            
         // Set the startScreen appears for 3 sec and then use actionPerformed method to create a new activity (go to mainScreen)
@@ -144,6 +145,7 @@ public class StartScreen extends javax.swing.JFrame  {
                 System.out.println("Already displayed for 3 sec, and going to a main screen now...");
                 MainScreen mainScreen = new MainScreen();
                 mainScreen.setVisible(true);
+                startScreen.setVisible(false);
             }
         };
         Timer timer = new Timer(delay, taskPerformer);
