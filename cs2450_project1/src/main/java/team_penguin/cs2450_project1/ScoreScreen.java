@@ -89,7 +89,7 @@ public class ScoreScreen extends javax.swing.JFrame {
         getContentPane().add(backButton);
         backButton.setBounds(20, 290, 120, 40);
 
-        background.setIcon(new javax.swing.ImageIcon("C:\\Users\\amirc\\OneDrive\\Desktop\\credit and score.jpg")); // NOI18N
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/credit and score.jpg"))); // NOI18N
         background.setText("jLabel7");
         getContentPane().add(background);
         background.setBounds(1, -4, 600, 400);

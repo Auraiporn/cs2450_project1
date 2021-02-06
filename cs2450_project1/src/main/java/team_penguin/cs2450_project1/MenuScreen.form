@@ -34,7 +34,7 @@
           <Color blue="ff" green="ff" red="cc" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\amirc\OneDrive\Desktop\penguin.jpg"/>
+          <Image iconType="2" name="C:\Users\amirc\OneDrive\Documents\NetBeansProjects\cs2450_project1\cs2450_project1\src\main\java\team_penguin\cs2450_project1\penguin.jpg"/>
         </Property>
       </Properties>
       <Constraints>
@@ -94,7 +94,7 @@
     <Component class="javax.swing.JLabel" name="BackgroundPicture">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\amirc\OneDrive\Desktop\cartoon-arctic-ice-landscape-outdoor-scene-vector-26665194.jpg"/>
+          <Image iconType="2" name="C:\Users\amirc\OneDrive\Documents\NetBeansProjects\cs2450_project1\cs2450_project1\src\main\java\team_penguin\cs2450_project1\cartoon-arctic-ice-landscape-outdoor-scene-vector-26665194.jpg"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>

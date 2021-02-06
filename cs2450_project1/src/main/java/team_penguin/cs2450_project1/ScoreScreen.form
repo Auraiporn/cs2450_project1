@@ -141,7 +141,7 @@
     <Component class="javax.swing.JLabel" name="background">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\amirc\OneDrive\Desktop\credit and score.jpg"/>
+          <Image iconType="3" name="/team_penguin/cs2450_project1/credit and score.jpg"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel7"/>
       </Properties>
