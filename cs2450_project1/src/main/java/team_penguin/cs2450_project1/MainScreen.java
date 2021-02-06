@@ -47,6 +47,7 @@ public class MainScreen extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        getContentPane().setLayout(null);
 
         playButton.setText("Play");
         playButton.setPreferredSize(new java.awt.Dimension(50, 30));
@@ -55,6 +56,8 @@ public class MainScreen extends javax.swing.JFrame {
                 playButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(playButton);
+        playButton.setBounds(446, 278, 100, 30);
 
         highScoreButton.setText("High Scores");
         highScoreButton.setPreferredSize(new java.awt.Dimension(50, 30));
@@ -63,6 +66,8 @@ public class MainScreen extends javax.swing.JFrame {
                 highScoreButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(highScoreButton);
+        highScoreButton.setBounds(446, 326, 100, 30);
 
         creditButton.setText("Credits");
         creditButton.setPreferredSize(new java.awt.Dimension(50, 30));
@@ -71,30 +76,8 @@ public class MainScreen extends javax.swing.JFrame {
                 creditButtonActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(446, 446, 446)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(creditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(highScoreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(54, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(278, Short.MAX_VALUE)
-                .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(highScoreButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(creditButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
-        );
+        getContentPane().add(creditButton);
+        creditButton.setBounds(446, 374, 100, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -10,8 +10,14 @@ package team_penguin.cs2450_project1;
  * @author acer
  */
 
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.Action;
+
+
 
 public class Hangman extends javax.swing.JFrame {
 
@@ -63,9 +69,19 @@ public class Hangman extends javax.swing.JFrame {
         }
         return positions;
     }
+    
     public Hangman() {
         initComponents();
         
+        //Set the height and width of window screen and do not let user to change the size
+        setSize(600,400);
+        setLocation(300,200);
+        setResizable(false);
+        
+        //date and time
+        showDate();
+        //showTime();
+       
         //Select a word for guess
         //String word = hangmanWord();
         String word = "abstract";
@@ -83,7 +99,27 @@ public class Hangman extends javax.swing.JFrame {
         printAry(guess);
         
     }
-
+    // Methods to show Time and Date
+    void showDate(){
+        Date d = new Date();
+        SimpleDateFormat f = new SimpleDateFormat("MM dd, yyy");
+        Date.setText(f.format(d));
+    }
+     
+   /* void showTime(){
+        new Timer(0, new ActionListener(){
+            
+            @override
+            Public void ActionPerformed(Action event e) {
+                Date d = new Date();
+               SimpleDateFormat f = new SimpleDateFormat("hh:mm:ss a");
+               Time.setText(f.format(d));
+           }
+        }).start();
+    }*/
+   //}
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -94,8 +130,11 @@ public class Hangman extends javax.swing.JFrame {
     private void initComponents() {
 
         skipButton = new javax.swing.JButton();
+        Date = new javax.swing.JLabel();
+        Time = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         skipButton.setText("Skip");
         skipButton.addActionListener(new java.awt.event.ActionListener() {
@@ -103,23 +142,18 @@ public class Hangman extends javax.swing.JFrame {
                 skipButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(skipButton);
+        skipButton.setBounds(320, 210, 57, 25);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(skipButton)
-                .addContainerGap(339, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(258, Short.MAX_VALUE)
-                .addComponent(skipButton)
-                .addGap(19, 19, 19))
-        );
+        Date.setFont(new java.awt.Font("Stencil", 0, 13)); // NOI18N
+        Date.setText("Date");
+        getContentPane().add(Date);
+        Date.setBounds(10, 10, 140, 41);
+
+        Time.setFont(new java.awt.Font("Stencil", 0, 13)); // NOI18N
+        Time.setText("Time");
+        getContentPane().add(Time);
+        Time.setBounds(240, 10, 150, 60);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -168,6 +202,8 @@ public class Hangman extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Date;
+    private javax.swing.JLabel Time;
     private javax.swing.JButton skipButton;
     // End of variables declaration//GEN-END:variables
 }

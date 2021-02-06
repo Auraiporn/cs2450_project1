@@ -22,6 +22,9 @@ public class StartScreen extends javax.swing.JFrame  {
      */
     public StartScreen() {
         initComponents();
+        setSize(600,400);
+        setLocation(300,200);
+        setResizable(false);
     }
 
     /**
@@ -33,26 +36,33 @@ public class StartScreen extends javax.swing.JFrame  {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        Title = new javax.swing.JLabel();
+        TeamName = new javax.swing.JLabel();
         nextButton = new javax.swing.JButton();
+        Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hang Man Game");
         setBackground(new java.awt.Color(0, 0, 0));
         setForeground(new java.awt.Color(0, 0, 0));
-        setMaximumSize(new java.awt.Dimension(600, 400));
         setMinimumSize(new java.awt.Dimension(600, 400));
         setName("StartFrame"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(600, 400));
         setResizable(false);
         setSize(new java.awt.Dimension(600, 400));
+        getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel1.setText("CS 2410 Point and Click Game v.1.0");
+        Title.setFont(new java.awt.Font("Stencil", 1, 30)); // NOI18N
+        Title.setForeground(new java.awt.Color(255, 255, 255));
+        Title.setText("CS 2450 Hangman v.1.0");
+        getContentPane().add(Title);
+        Title.setBounds(100, 40, 410, 120);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel2.setText("By: Team Penguin");
+        TeamName.setFont(new java.awt.Font("Stencil", 1, 28)); // NOI18N
+        TeamName.setForeground(new java.awt.Color(255, 255, 255));
+        TeamName.setText("By: Team Penguin");
+        getContentPane().add(TeamName);
+        TeamName.setBounds(150, 260, 290, 70);
+        TeamName.getAccessibleContext().setAccessibleDescription("");
 
         nextButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nextButton.setText("Next");
@@ -61,46 +71,20 @@ public class StartScreen extends javax.swing.JFrame  {
                 nextButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(nextButton);
+        nextButton.setBounds(10, 420, 97, 25);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(36, 36, 36))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(235, 235, 235)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(275, 275, 275)
-                        .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jLabel1)
-                .addGap(161, 161, 161)
-                .addComponent(nextButton)
-                .addGap(37, 37, 37)
-                .addComponent(jLabel2)
-                .addContainerGap(53, Short.MAX_VALUE))
-        );
-
-        jLabel2.getAccessibleContext().setAccessibleDescription("");
+        Background.setIcon(new javax.swing.ImageIcon("C:\\Users\\amirc\\OneDrive\\Desktop\\final bg.jpg")); // NOI18N
+        getContentPane().add(Background);
+        Background.setBounds(0, 0, 600, 400);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // This method handles the click next button if a user clicks next, then a main screen will appear
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-         MainScreen mainScreen = new MainScreen();
-         mainScreen.setVisible(true);
+         MenuScreen menuScreen = new MenuScreen();
+         menuScreen.setVisible(true);
     }//GEN-LAST:event_nextButtonActionPerformed
 
     /**
@@ -143,8 +127,8 @@ public class StartScreen extends javax.swing.JFrame  {
             public void actionPerformed(ActionEvent e) {
                 // Perform a task --> we want to go to a mainScreen 
                 System.out.println("Already displayed for 3 sec, and going to a main screen now...");
-                MainScreen mainScreen = new MainScreen();
-                mainScreen.setVisible(true);
+                MenuScreen menuScreen = new MenuScreen();
+                menuScreen.setVisible(true);
                 startScreen.setVisible(false);
             }
         };
@@ -155,8 +139,9 @@ public class StartScreen extends javax.swing.JFrame  {
         }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel Background;
+    private javax.swing.JLabel TeamName;
+    private javax.swing.JLabel Title;
     private javax.swing.JButton nextButton;
     // End of variables declaration//GEN-END:variables
 
