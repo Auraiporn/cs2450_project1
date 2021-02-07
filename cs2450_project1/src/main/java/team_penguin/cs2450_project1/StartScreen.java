@@ -73,8 +73,6 @@ public class StartScreen extends javax.swing.JFrame  {
         });
         getContentPane().add(nextButton);
         nextButton.setBounds(10, 420, 97, 25);
-
-        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/final bg.jpg"))); // NOI18N
         getContentPane().add(Background);
         Background.setBounds(0, 0, 600, 400);
 
@@ -146,9 +144,4 @@ public class StartScreen extends javax.swing.JFrame  {
     // End of variables declaration//GEN-END:variables
 
     
-
-   
-    
-
-        
 }

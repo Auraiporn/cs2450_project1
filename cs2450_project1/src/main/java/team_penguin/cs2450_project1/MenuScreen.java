@@ -41,9 +41,8 @@ public class MenuScreen extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         PenguinPicture.setBackground(new java.awt.Color(204, 255, 255));
-        PenguinPicture.setIcon(new javax.swing.ImageIcon("C:\\Users\\amirc\\OneDrive\\Documents\\NetBeansProjects\\cs2450_project1\\cs2450_project1\\src\\main\\java\\team_penguin\\cs2450_project1\\penguin.jpg")); // NOI18N
         getContentPane().add(PenguinPicture);
-        PenguinPicture.setBounds(40, 130, 170, 180);
+        PenguinPicture.setBounds(40, 140, 170, 180);
 
         PlayButton.setFont(new java.awt.Font("Stencil", 1, 26)); // NOI18N
         PlayButton.setText("Play");
@@ -75,7 +74,6 @@ public class MenuScreen extends javax.swing.JFrame {
         getContentPane().add(CreditsButton);
         CreditsButton.setBounds(370, 300, 210, 40);
 
-        BackgroundPicture.setIcon(new javax.swing.ImageIcon("C:\\Users\\amirc\\OneDrive\\Documents\\NetBeansProjects\\cs2450_project1\\cs2450_project1\\src\\main\\java\\team_penguin\\cs2450_project1\\cartoon-arctic-ice-landscape-outdoor-scene-vector-26665194.jpg")); // NOI18N
         BackgroundPicture.setText("jLabel1");
         getContentPane().add(BackgroundPicture);
         BackgroundPicture.setBounds(0, 0, 600, 400);
@@ -87,16 +85,14 @@ public class MenuScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
          Hangman h = new Hangman();
          h.setVisible(true);
-            dispose();
-      //  mainScreen.setVisible(false);
+         dispose();
     }//GEN-LAST:event_PlayButtonActionPerformed
 
     private void HighScoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HighScoreActionPerformed
         // TODO add your handling code here:
         ScoreScreen ss = new ScoreScreen();
         ss.setVisible(true);
-            dispose();
-    //   mainScreen.setVisible(false);
+        dispose();
     }//GEN-LAST:event_HighScoreActionPerformed
 
     private void CreditsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreditsButtonActionPerformed
@@ -104,7 +100,6 @@ public class MenuScreen extends javax.swing.JFrame {
         CreditScreen cs = new CreditScreen();
         cs.setVisible(true);
         dispose();
-     //   mainScreen.setVisible(false);
     }//GEN-LAST:event_CreditsButtonActionPerformed
 
     /**

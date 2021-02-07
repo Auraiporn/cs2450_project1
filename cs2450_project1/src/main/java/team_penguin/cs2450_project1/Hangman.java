@@ -11,11 +11,13 @@ package team_penguin.cs2450_project1;
  */
 
 import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.text.SimpleDateFormat;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.Action;
+import javax.swing.Timer;
 
 
 
@@ -80,7 +82,7 @@ public class Hangman extends javax.swing.JFrame {
         
         //date and time
         showDate();
-        //showTime();
+        showTime();
        
         //Select a word for guess
         //String word = hangmanWord();
@@ -102,23 +104,21 @@ public class Hangman extends javax.swing.JFrame {
     // Methods to show Time and Date
     void showDate(){
         Date d = new Date();
-        SimpleDateFormat f = new SimpleDateFormat("MM dd, yyy");
+        SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd");
         Date.setText(f.format(d));
     }
-     
-   /* void showTime(){
+    
+    void showTime(){
         new Timer(0, new ActionListener(){
             
-            @override
-            Public void ActionPerformed(Action event e) {
-                Date d = new Date();
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               Date d = new Date();
                SimpleDateFormat f = new SimpleDateFormat("hh:mm:ss a");
                Time.setText(f.format(d));
-           }
+            }
         }).start();
-    }*/
-   //}
-    
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -134,6 +134,7 @@ public class Hangman extends javax.swing.JFrame {
         Time = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(600, 400));
         getContentPane().setLayout(null);
 
         skipButton.setText("Skip");
@@ -143,24 +144,24 @@ public class Hangman extends javax.swing.JFrame {
             }
         });
         getContentPane().add(skipButton);
-        skipButton.setBounds(320, 210, 57, 25);
+        skipButton.setBounds(320, 210, 53, 23);
 
         Date.setFont(new java.awt.Font("Stencil", 0, 13)); // NOI18N
         Date.setText("Date");
         getContentPane().add(Date);
-        Date.setBounds(10, 10, 140, 41);
+        Date.setBounds(20, 10, 140, 41);
 
         Time.setFont(new java.awt.Font("Stencil", 0, 13)); // NOI18N
         Time.setText("Time");
         getContentPane().add(Time);
-        Time.setBounds(240, 10, 150, 60);
+        Time.setBounds(240, 0, 150, 60);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void skipButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skipButtonActionPerformed
         // TODO add your handling code here:
-        MainScreen ms = new MainScreen();
+        MenuScreen ms = new MenuScreen();
         ms.setVisible(true);
         dispose();
         

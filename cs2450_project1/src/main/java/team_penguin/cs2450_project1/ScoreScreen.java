@@ -65,19 +65,19 @@ public class ScoreScreen extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Jane: 300");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(230, 190, 123, 25);
+        jLabel4.setBounds(230, 190, 120, 25);
 
         jLabel5.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Jacob: 400");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(230, 220, 139, 25);
+        jLabel5.setBounds(230, 220, 136, 25);
 
         jLabel6.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Jack: 500");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(230, 250, 125, 25);
+        jLabel6.setBounds(230, 250, 121, 25);
 
         backButton.setFont(new java.awt.Font("Stencil", 1, 28)); // NOI18N
         backButton.setText("Back");
@@ -89,7 +89,6 @@ public class ScoreScreen extends javax.swing.JFrame {
         getContentPane().add(backButton);
         backButton.setBounds(20, 290, 120, 40);
 
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/credit and score.jpg"))); // NOI18N
         background.setText("jLabel7");
         getContentPane().add(background);
         background.setBounds(1, -4, 600, 400);
