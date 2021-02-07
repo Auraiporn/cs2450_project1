@@ -17,6 +17,7 @@ import java.util.Random;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.Action;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 
@@ -26,6 +27,10 @@ public class Hangman extends javax.swing.JFrame {
     /**
      * Creates new form Hangman
      */
+    private Integer[] guess;
+    private String word;
+    private ArrayList<javax.swing.JLabel> labelGroup;
+    private ArrayList<javax.swing.JButton> buttonGroup;
     
     public static String hangmanWord()
     {
@@ -44,27 +49,30 @@ public class Hangman extends javax.swing.JFrame {
         }
         System.out.print("\n");
     }
-    public static void init(Integer[] ary)
+    public void init(Integer[] ary)
     {
         for(int i = 0; i < ary.length; i++)
         {
             ary[i] = 0;
         }
     }
-    public static Integer[] mark(Integer[] ary, ArrayList<Integer> position)
+    public boolean mark(ArrayList<Integer> position)
     {
+        boolean flag = false;
         for(int i = 0; i < position.size(); i++)
         {
-            ary[position.get(i)]=1;
+            guess[position.get(i)]=1;
+            flag = true;
         }
-        return ary;
+        return flag;
+        
     }
-    public static ArrayList<Integer> search(String word, char alphabet)
+    public ArrayList<Integer> search(String word, String alphabet)
     {
         ArrayList<Integer> positions = new ArrayList<Integer>();
         for(int i = 0; i < word.length(); i++)
         {
-            if(word.charAt(i) == alphabet)
+            if(Character.toString(word.charAt(i)).equals(alphabet))
             {
                 positions.add(i);
             }
@@ -83,22 +91,22 @@ public class Hangman extends javax.swing.JFrame {
         //date and time
         showDate();
         showTime();
-       
-        //Select a word for guess
-        //String word = hangmanWord();
-        String word = "abstract";
-        System.out.println(word);
         
-        //Guess array
-        Integer[] guess = new Integer[word.length()];
+        //Initialize word
+        this.word = hangmanWord();
+        
+         //Initialized Guess array
+        this.guess = new Integer[word.length()];
         //Initialize to 0
         init(guess);
         
+        this.buttonGroup = generateAlphabetButton();
+        this.labelGroup = generateSolutionLabel();
         // Test mark
-        mark(guess,search(word,'a'));
+        //mark(guess,search(word,'a'));
         
         //Testing print out
-        printAry(guess);
+        //printAry(guess);
         
     }
     // Methods to show Time and Date
@@ -144,21 +152,98 @@ public class Hangman extends javax.swing.JFrame {
             }
         });
         getContentPane().add(skipButton);
-        skipButton.setBounds(320, 210, 53, 23);
+        skipButton.setBounds(530, 20, 53, 23);
 
         Date.setFont(new java.awt.Font("Stencil", 0, 13)); // NOI18N
         Date.setText("Date");
         getContentPane().add(Date);
-        Date.setBounds(20, 10, 140, 41);
+        Date.setBounds(340, 20, 90, 20);
 
         Time.setFont(new java.awt.Font("Stencil", 0, 13)); // NOI18N
         Time.setText("Time");
         getContentPane().add(Time);
-        Time.setBounds(240, 0, 150, 60);
+        Time.setBounds(440, 10, 80, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+//x, y,length, width,
+// 30,300,40,40
+    
+    public ArrayList<javax.swing.JLabel> generateSolutionLabel()
+    {
+        
+        ArrayList<javax.swing.JLabel> solutionLabelGroup = new ArrayList<javax.swing.JLabel>();
+        int [] original = {170,250,40,40};
+        
+        int location_x = 170;
+        int location_y = 200;
+        int length = 40;
+        int width = 40;
+        
+        int space_between = 30;
+        
+        int count = this.word.length();
+        
+        for(int i = 0; i < count; i++)
+        {
+            javax.swing.JLabel label = new javax.swing.JLabel();
+            label.setText("");
+            getContentPane().add(label);
+            label.setBounds(location_x, location_y, length, width);
+            
+            //Add it to arrayList
+            solutionLabelGroup.add(label);
+            
+            location_x += space_between;
+        }
+        
+        return solutionLabelGroup;
+    }
+        
+    public ArrayList<javax.swing.JButton> generateAlphabetButton()
+    {
+        ArrayList<javax.swing.JButton> alphabetButtonGroup = new ArrayList<javax.swing.JButton>();
+        int [] original = {30,250,40,40};
+        
+        int location_x = 30;
+        int location_y = 250;
+        int length = 40;
+        int width = 40;
+        
+        int space_between = 40;
+        
+        int count = 1;
+        int middle = 13;
+        
+        for(char alphabet = 'a'; alphabet <='z'; alphabet++)
+        {
+            javax.swing.JButton button = new javax.swing.JButton();
+            button.setText("" + alphabet);
+            
+            getContentPane().add(button);
+            button.setBounds(location_x, location_y, length, width);
+            //ActionListeners
+            button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AllButtonActionPerformed(evt);
+            }
+            });
+            
+            //Add it to arrayList
+            alphabetButtonGroup.add(button);
+            
+            location_x += space_between;
+            if(count == 13)
+            {
+                location_x = original[0];
+                location_y += 50;
+            }
+            count++;
+            
+        }
+        return alphabetButtonGroup;
+    }
     private void skipButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skipButtonActionPerformed
         // TODO add your handling code here:
         MenuScreen ms = new MenuScreen();
@@ -167,6 +252,27 @@ public class Hangman extends javax.swing.JFrame {
         
     }//GEN-LAST:event_skipButtonActionPerformed
 
+    private void AllButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        JOptionPane.showMessageDialog(null, "The word is " + this.word);
+        JOptionPane.showMessageDialog(null, "You've pressed the " + evt.getActionCommand() + " button!");
+        if(mark(search(this.word, evt.getActionCommand())))
+        {
+            JOptionPane.showMessageDialog(null, "You've found one letter!");
+            for(int i = 0; i < guess.length; i++)
+            {
+                if(guess[i] == 1)
+                {
+                    this.labelGroup.get(i).setText(Character.toString(this.word.charAt(i)));
+                }
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Wrong!");
+        }
+        
+        
+    } 
     /**
      * @param args the command line arguments
      */
@@ -198,6 +304,7 @@ public class Hangman extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Hangman().setVisible(true);
+                
             }
         });
     }
