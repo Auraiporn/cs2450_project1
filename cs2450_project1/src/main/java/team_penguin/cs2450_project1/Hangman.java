@@ -253,6 +253,7 @@ public class Hangman extends javax.swing.JFrame {
     }//GEN-LAST:event_skipButtonActionPerformed
 
     private void AllButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        
         JOptionPane.showMessageDialog(null, "The word is " + this.word);
         JOptionPane.showMessageDialog(null, "You've pressed the " + evt.getActionCommand() + " button!");
         if(mark(search(this.word, evt.getActionCommand())))

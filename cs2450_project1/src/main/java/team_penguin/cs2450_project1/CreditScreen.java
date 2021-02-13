@@ -31,41 +31,41 @@ public class CreditScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        title = new javax.swing.JLabel();
+        credit_2 = new javax.swing.JLabel();
+        credit_3 = new javax.swing.JLabel();
+        credit_1 = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        credit_4 = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Stencil", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Credit");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(230, 60, 120, 60);
+        title.setFont(new java.awt.Font("Stencil", 1, 30)); // NOI18N
+        title.setForeground(new java.awt.Color(255, 255, 255));
+        title.setText("Credit");
+        getContentPane().add(title);
+        title.setBounds(240, 30, 120, 60);
 
-        jLabel2.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Haowen Yin                    011781185");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(90, 180, 440, 30);
+        credit_2.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
+        credit_2.setForeground(new java.awt.Color(255, 255, 255));
+        credit_2.setText("Haowen Yin: 011781185");
+        getContentPane().add(credit_2);
+        credit_2.setBounds(90, 150, 440, 30);
 
-        jLabel3.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Amir Chaudhry            014897025 ");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(90, 220, 440, 30);
+        credit_3.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
+        credit_3.setForeground(new java.awt.Color(255, 255, 255));
+        credit_3.setText("Amir Chaudhry: 014897025 ");
+        getContentPane().add(credit_3);
+        credit_3.setBounds(90, 200, 440, 30);
 
-        jLabel4.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Beize Li                           014699412 ");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(90, 140, 450, 30);
+        credit_1.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
+        credit_1.setForeground(new java.awt.Color(255, 255, 255));
+        credit_1.setText("Beize Li: 014699412 ");
+        getContentPane().add(credit_1);
+        credit_1.setBounds(90, 100, 450, 30);
 
         backButton.setFont(new java.awt.Font("Stencil", 1, 28)); // NOI18N
         backButton.setText("Back");
@@ -75,17 +75,16 @@ public class CreditScreen extends javax.swing.JFrame {
             }
         });
         getContentPane().add(backButton);
-        backButton.setBounds(10, 310, 120, 40);
+        backButton.setBounds(50, 300, 120, 40);
 
-        jLabel5.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Auraiporn Auksorn   0");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(90, 260, 440, 30);
+        credit_4.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
+        credit_4.setForeground(new java.awt.Color(255, 255, 255));
+        credit_4.setText("Auraiporn Auksorn   0");
+        getContentPane().add(credit_4);
+        credit_4.setBounds(90, 240, 440, 30);
 
         background.setBackground(new java.awt.Color(0, 51, 51));
-        background.setIcon(new javax.swing.ImageIcon("C:\\Users\\amirc\\OneDrive\\Desktop\\credit and score.jpg")); // NOI18N
-        background.setText("jLabel6");
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/credit and score.jpg"))); // NOI18N
         getContentPane().add(background);
         background.setBounds(-1, 2, 600, 400);
 
@@ -136,10 +135,10 @@ public class CreditScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JLabel background;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel credit_1;
+    private javax.swing.JLabel credit_2;
+    private javax.swing.JLabel credit_3;
+    private javax.swing.JLabel credit_4;
+    private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

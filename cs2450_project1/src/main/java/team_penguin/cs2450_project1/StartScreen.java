@@ -39,7 +39,7 @@ public class StartScreen extends javax.swing.JFrame  {
         Title = new javax.swing.JLabel();
         TeamName = new javax.swing.JLabel();
         nextButton = new javax.swing.JButton();
-        Background = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hang Man Game");
@@ -73,8 +73,12 @@ public class StartScreen extends javax.swing.JFrame  {
         });
         getContentPane().add(nextButton);
         nextButton.setBounds(10, 420, 97, 25);
-        getContentPane().add(Background);
-        Background.setBounds(0, 0, 600, 400);
+
+        //System.out.println(System.getProperty("java.class.path"));
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/final_bg.jpg"))); // NOI18N
+        background.setPreferredSize(new java.awt.Dimension(610, 410));
+        getContentPane().add(background);
+        background.setBounds(0, 0, 610, 410);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -115,6 +119,7 @@ public class StartScreen extends javax.swing.JFrame  {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             startScreen.setVisible(true);
+            System.out.println(System.getProperty("getResources"));
           
         });
            
@@ -137,9 +142,9 @@ public class StartScreen extends javax.swing.JFrame  {
         }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Background;
     private javax.swing.JLabel TeamName;
     private javax.swing.JLabel Title;
+    private javax.swing.JLabel background;
     private javax.swing.JButton nextButton;
     // End of variables declaration//GEN-END:variables
 

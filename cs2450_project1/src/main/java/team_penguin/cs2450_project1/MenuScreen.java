@@ -41,8 +41,9 @@ public class MenuScreen extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         PenguinPicture.setBackground(new java.awt.Color(204, 255, 255));
+        PenguinPicture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/penguin.jpg"))); // NOI18N
         getContentPane().add(PenguinPicture);
-        PenguinPicture.setBounds(40, 140, 170, 180);
+        PenguinPicture.setBounds(50, 140, 180, 170);
 
         PlayButton.setFont(new java.awt.Font("Stencil", 1, 26)); // NOI18N
         PlayButton.setText("Play");
@@ -74,7 +75,7 @@ public class MenuScreen extends javax.swing.JFrame {
         getContentPane().add(CreditsButton);
         CreditsButton.setBounds(370, 300, 210, 40);
 
-        BackgroundPicture.setText("jLabel1");
+        BackgroundPicture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/cartoon-arctic-ice-landscape-outdoor-scene-vector-26665194.jpg"))); // NOI18N
         getContentPane().add(BackgroundPicture);
         BackgroundPicture.setBounds(0, 0, 600, 400);
 

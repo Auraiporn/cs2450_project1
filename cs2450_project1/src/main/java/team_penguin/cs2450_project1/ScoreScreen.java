@@ -5,6 +5,13 @@
  */
 package team_penguin.cs2450_project1;
 
+import java.io.File;
+import java.io.FileNotFoundException; 
+import java.util.Scanner; 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
+
 /**
  *
  * @author acer
@@ -14,11 +21,37 @@ public class ScoreScreen extends javax.swing.JFrame {
     /**
      * Creates new form ScoreScreen
      */
+    private javax.swing.JLabel score_label_group[] = new javax.swing.JLabel[5];
+    
     public ScoreScreen() {
         initComponents();
         setSize(600,400);
         setLocation(300,200);
         setResizable(false);
+        
+        score_label_group[0] = score_top1;
+        score_label_group[1] = score_top2;
+        score_label_group[2] = score_top3;
+        score_label_group[3] = score_top4;
+        score_label_group[4] = score_top5;
+        loadScores();
+    }
+    //
+    private void loadScores()
+    {
+        try{
+            //JOptionPane.showMessageDialog(null,System.getProperty("user.dir"));
+            File myFile = new File("./src/main/java/team_penguin/cs2450_project1/score.txt");
+            Scanner read = new Scanner(myFile);
+            int i = 0;
+            while(read.hasNextLine()){
+                score_label_group[i].setText(read.nextLine());
+                i++;
+            }
+        }
+        catch (FileNotFoundException e){
+            JOptionPane.showMessageDialog(null, "File not found: score.txt");
+        }
     }
 
     /**
@@ -31,11 +64,11 @@ public class ScoreScreen extends javax.swing.JFrame {
     private void initComponents() {
 
         title = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        score_top1 = new javax.swing.JLabel();
+        score_top2 = new javax.swing.JLabel();
+        score_top3 = new javax.swing.JLabel();
+        score_top4 = new javax.swing.JLabel();
+        score_top5 = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
@@ -49,35 +82,40 @@ public class ScoreScreen extends javax.swing.JFrame {
         getContentPane().add(title);
         title.setBounds(190, 50, 230, 52);
 
-        jLabel2.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("John : 100");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(230, 130, 140, 25);
+        score_top1.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
+        score_top1.setForeground(new java.awt.Color(255, 255, 255));
+        score_top1.setText("top1");
+        score_top1.setPreferredSize(new java.awt.Dimension(250, 30));
+        getContentPane().add(score_top1);
+        score_top1.setBounds(190, 120, 250, 30);
 
-        jLabel3.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Josh: 200");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(230, 160, 140, 25);
+        score_top2.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
+        score_top2.setForeground(new java.awt.Color(255, 255, 255));
+        score_top2.setText("Top2");
+        score_top2.setPreferredSize(new java.awt.Dimension(250, 30));
+        getContentPane().add(score_top2);
+        score_top2.setBounds(190, 160, 250, 30);
 
-        jLabel4.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Jane: 300");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(230, 190, 120, 25);
+        score_top3.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
+        score_top3.setForeground(new java.awt.Color(255, 255, 255));
+        score_top3.setText("Top3");
+        score_top3.setPreferredSize(new java.awt.Dimension(250, 30));
+        getContentPane().add(score_top3);
+        score_top3.setBounds(190, 200, 250, 30);
 
-        jLabel5.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Jacob: 400");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(230, 220, 136, 25);
+        score_top4.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
+        score_top4.setForeground(new java.awt.Color(255, 255, 255));
+        score_top4.setText("Top4");
+        score_top4.setPreferredSize(new java.awt.Dimension(250, 30));
+        getContentPane().add(score_top4);
+        score_top4.setBounds(190, 240, 250, 30);
 
-        jLabel6.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Jack: 500");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(230, 250, 121, 25);
+        score_top5.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
+        score_top5.setForeground(new java.awt.Color(255, 255, 255));
+        score_top5.setText("Top5");
+        score_top5.setPreferredSize(new java.awt.Dimension(250, 30));
+        getContentPane().add(score_top5);
+        score_top5.setBounds(190, 280, 250, 30);
 
         backButton.setFont(new java.awt.Font("Stencil", 1, 28)); // NOI18N
         backButton.setText("Back");
@@ -87,9 +125,9 @@ public class ScoreScreen extends javax.swing.JFrame {
             }
         });
         getContentPane().add(backButton);
-        backButton.setBounds(20, 290, 120, 40);
+        backButton.setBounds(20, 310, 120, 40);
 
-        background.setText("jLabel7");
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/credit and score.jpg"))); // NOI18N
         getContentPane().add(background);
         background.setBounds(1, -4, 600, 400);
 
@@ -140,11 +178,11 @@ public class ScoreScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JLabel background;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel score_top1;
+    private javax.swing.JLabel score_top2;
+    private javax.swing.JLabel score_top3;
+    private javax.swing.JLabel score_top4;
+    private javax.swing.JLabel score_top5;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }
