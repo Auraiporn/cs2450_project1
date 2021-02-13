@@ -19,9 +19,20 @@ import java.util.Date;
 import javax.swing.Action;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import java.awt.Graphics;
+import javax.swing.*; 
+import java.awt.*;
 
 
-
+class Line extends JPanel{
+    public Line(){
+        
+    }
+    public void paintComponent(Graphics g)
+    {
+        g.drawLine(0, 0, 50, 0);
+    }
+}
 public class Hangman extends javax.swing.JFrame {
 
     /**
@@ -31,6 +42,7 @@ public class Hangman extends javax.swing.JFrame {
     private String word;
     private ArrayList<javax.swing.JLabel> labelGroup;
     private ArrayList<javax.swing.JButton> buttonGroup;
+    private int playerScore;
     
     public static String hangmanWord()
     {
@@ -79,8 +91,46 @@ public class Hangman extends javax.swing.JFrame {
         }
         return positions;
     }
+    private void disableButton(String button_name)
+    {
+        for(int i = 0; i < buttonGroup.size(); i++)
+        {
+            if(buttonGroup.get(i).getText() == button_name)
+            {
+                buttonGroup.get(i).setVisible(false);
+            }
+        }
+    }
+    private boolean checkComplete()
+    {
+        for(int i = 0; i < guess.length; i++)
+        {
+            if(guess[i]==0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    private boolean checkFail(){
+        if(this.playerScore <= 0)
+        {
+            return true;
+        }
+        return false;
+    }
+    private void updateScore(int offset)
+    {
+        if(this.playerScore <= 0)
+        {
+            return;
+        }
+        this.playerScore += offset;
+        score_label.setText(Integer.toString(this.playerScore));
+    }
     
     public Hangman() {
+        
         initComponents();
         
         //Set the height and width of window screen and do not let user to change the size
@@ -88,12 +138,12 @@ public class Hangman extends javax.swing.JFrame {
         setLocation(300,200);
         setResizable(false);
         
-        //date and time
-        showDate();
-        showTime();
-        
         //Initialize word
         this.word = hangmanWord();
+        
+        //Initialize score
+        this.playerScore = 100;
+        this.updateScore(0);
         
          //Initialized Guess array
         this.guess = new Integer[word.length()];
@@ -102,11 +152,10 @@ public class Hangman extends javax.swing.JFrame {
         
         this.buttonGroup = generateAlphabetButton();
         this.labelGroup = generateSolutionLabel();
-        // Test mark
-        //mark(guess,search(word,'a'));
         
-        //Testing print out
-        //printAry(guess);
+        //date and time
+        showDate();
+        showTime();
         
     }
     // Methods to show Time and Date
@@ -140,6 +189,8 @@ public class Hangman extends javax.swing.JFrame {
         skipButton = new javax.swing.JButton();
         Date = new javax.swing.JLabel();
         Time = new javax.swing.JLabel();
+        score_title = new javax.swing.JLabel();
+        score_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(600, 400));
@@ -164,6 +215,14 @@ public class Hangman extends javax.swing.JFrame {
         getContentPane().add(Time);
         Time.setBounds(440, 10, 80, 40);
 
+        score_title.setText("Score");
+        getContentPane().add(score_title);
+        score_title.setBounds(50, 60, 70, 20);
+
+        score_label.setText("100");
+        getContentPane().add(score_label);
+        score_label.setBounds(50, 80, 100, 30);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -187,10 +246,16 @@ public class Hangman extends javax.swing.JFrame {
         
         for(int i = 0; i < count; i++)
         {
+            //Create the label
             javax.swing.JLabel label = new javax.swing.JLabel();
             label.setText("");
             getContentPane().add(label);
             label.setBounds(location_x, location_y, length, width);
+            
+            //Add line
+            javax.swing.JPanel line_panel = new Line();
+            getContentPane().add(line_panel);
+            line_panel.setBounds(location_x - 5, location_y + 30, 15, 15);
             
             //Add it to arrayList
             solutionLabelGroup.add(label);
@@ -264,14 +329,32 @@ public class Hangman extends javax.swing.JFrame {
                 if(guess[i] == 1)
                 {
                     this.labelGroup.get(i).setText(Character.toString(this.word.charAt(i)));
+                    this.disableButton(evt.getActionCommand());
                 }
             }
+            
         }
         else
         {
             JOptionPane.showMessageDialog(null, "Wrong!");
+            int penalty = -10;
+            this.updateScore(penalty);
+            this.disableButton(evt.getActionCommand());
         }
         
+        if(checkComplete())
+        {
+            MenuScreen ms = new MenuScreen();
+            ms.setVisible(true);
+            dispose();
+        }
+        if(checkFail())
+        {
+            JOptionPane.showMessageDialog(null, "Lose!");
+            MenuScreen ms = new MenuScreen();
+            ms.setVisible(true);
+            dispose();
+        }
         
     } 
     /**
@@ -313,6 +396,8 @@ public class Hangman extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Date;
     private javax.swing.JLabel Time;
+    private javax.swing.JLabel score_label;
+    private javax.swing.JLabel score_title;
     private javax.swing.JButton skipButton;
     // End of variables declaration//GEN-END:variables
 }
