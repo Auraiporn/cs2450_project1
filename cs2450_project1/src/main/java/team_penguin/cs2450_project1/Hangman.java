@@ -161,7 +161,7 @@ public class Hangman extends javax.swing.JFrame {
     // Methods to show Time and Date
     void showDate(){
         Date d = new Date();
-        SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat f = new SimpleDateFormat("MMMM dd, yyyy");
         Date.setText(f.format(d));
     }
     
@@ -193,9 +193,9 @@ public class Hangman extends javax.swing.JFrame {
         score_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 400));
         getContentPane().setLayout(null);
 
+        skipButton.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
         skipButton.setText("Skip");
         skipButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,25 +203,31 @@ public class Hangman extends javax.swing.JFrame {
             }
         });
         getContentPane().add(skipButton);
-        skipButton.setBounds(530, 20, 53, 23);
+        skipButton.setBounds(470, 10, 100, 40);
 
-        Date.setFont(new java.awt.Font("Stencil", 0, 13)); // NOI18N
+        Date.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
+        Date.setForeground(new java.awt.Color(255, 255, 255));
         Date.setText("Date");
         getContentPane().add(Date);
-        Date.setBounds(340, 20, 90, 20);
+        Date.setBounds(140, 10, 190, 40);
 
-        Time.setFont(new java.awt.Font("Stencil", 0, 13)); // NOI18N
+        Time.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
+        Time.setForeground(new java.awt.Color(255, 255, 255));
         Time.setText("Time");
         getContentPane().add(Time);
-        Time.setBounds(440, 10, 80, 40);
+        Time.setBounds(330, 10, 120, 40);
 
+        score_title.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
+        score_title.setForeground(new java.awt.Color(255, 255, 255));
         score_title.setText("Score");
         getContentPane().add(score_title);
         score_title.setBounds(50, 60, 70, 20);
 
+        score_label.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
+        score_label.setForeground(new java.awt.Color(255, 255, 255));
         score_label.setText("100");
         getContentPane().add(score_label);
-        score_label.setBounds(50, 80, 100, 30);
+        score_label.setBounds(60, 80, 40, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -311,7 +317,7 @@ public class Hangman extends javax.swing.JFrame {
     }
     private void skipButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skipButtonActionPerformed
         // TODO add your handling code here:
-        MenuScreen ms = new MenuScreen();
+        PlayerScore ms = new PlayerScore();
         ms.setVisible(true);
         dispose();
         

@@ -79,7 +79,7 @@ public class CreditScreen extends javax.swing.JFrame {
 
         credit_4.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
         credit_4.setForeground(new java.awt.Color(255, 255, 255));
-        credit_4.setText("Auraiporn Auksorn   0");
+        credit_4.setText("Auraiporn Auksorn: 014068197");
         getContentPane().add(credit_4);
         credit_4.setBounds(90, 240, 440, 30);
 
