@@ -66,15 +66,15 @@ public class PlayerScore extends javax.swing.JFrame {
             }
         });
         getContentPane().add(End);
-        End.setBounds(51, 316, 103, 37);
+        End.setBounds(50, 270, 103, 37);
 
         userscoreTitle.setFont(new java.awt.Font("Stencil", 1, 30)); // NOI18N
         userscoreTitle.setForeground(new java.awt.Color(255, 255, 255));
         userscoreTitle.setText("Your Score");
         getContentPane().add(userscoreTitle);
-        userscoreTitle.setBounds(197, 64, 189, 46);
+        userscoreTitle.setBounds(197, 64, 260, 46);
 
-        Score.setFont(new java.awt.Font("Snap ITC", 1, 38)); // NOI18N
+        Score.setFont(new java.awt.Font("Stencil", 1, 40)); // NOI18N
         Score.setForeground(new java.awt.Color(255, 255, 255));
         Score.setText("100");
         getContentPane().add(Score);

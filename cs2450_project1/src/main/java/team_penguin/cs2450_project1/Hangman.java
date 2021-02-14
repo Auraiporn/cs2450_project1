@@ -234,25 +234,21 @@ public class Hangman extends javax.swing.JFrame {
         skipButton.setBounds(470, 10, 100, 40);
 
         Date.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
-        Date.setForeground(new java.awt.Color(255, 255, 255));
         Date.setText("Date");
         getContentPane().add(Date);
         Date.setBounds(140, 10, 190, 40);
 
         Time.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
-        Time.setForeground(new java.awt.Color(255, 255, 255));
         Time.setText("Time");
         getContentPane().add(Time);
         Time.setBounds(330, 10, 120, 40);
 
         score_title.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
-        score_title.setForeground(new java.awt.Color(255, 255, 255));
         score_title.setText("Score");
         getContentPane().add(score_title);
         score_title.setBounds(50, 60, 70, 20);
 
         score_label.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
-        score_label.setForeground(new java.awt.Color(255, 255, 255));
         score_label.setText("100");
         getContentPane().add(score_label);
         score_label.setBounds(60, 80, 40, 30);

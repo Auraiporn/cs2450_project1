@@ -52,19 +52,19 @@ public class CreditScreen extends javax.swing.JFrame {
 
         credit_2.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
         credit_2.setForeground(new java.awt.Color(255, 255, 255));
-        credit_2.setText("Haowen Yin: 011781185");
+        credit_2.setText("Haowen Yin                   011781185");
         getContentPane().add(credit_2);
         credit_2.setBounds(90, 150, 440, 30);
 
         credit_3.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
         credit_3.setForeground(new java.awt.Color(255, 255, 255));
-        credit_3.setText("Amir Chaudhry: 014897025 ");
+        credit_3.setText("Amir Chaudhry           014897025 ");
         getContentPane().add(credit_3);
         credit_3.setBounds(90, 200, 440, 30);
 
         credit_1.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
         credit_1.setForeground(new java.awt.Color(255, 255, 255));
-        credit_1.setText("Beize Li: 014699412 ");
+        credit_1.setText("Beize Li                          014699412 ");
         getContentPane().add(credit_1);
         credit_1.setBounds(90, 100, 450, 30);
 
@@ -80,7 +80,7 @@ public class CreditScreen extends javax.swing.JFrame {
 
         credit_4.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
         credit_4.setForeground(new java.awt.Color(255, 255, 255));
-        credit_4.setText("Auraiporn Auksorn: 014068197");
+        credit_4.setText("Auraiporn Auksorn  014068197");
         getContentPane().add(credit_4);
         credit_4.setBounds(90, 250, 440, 30);
 
