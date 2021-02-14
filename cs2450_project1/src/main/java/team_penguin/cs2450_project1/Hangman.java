@@ -113,7 +113,7 @@ public class Hangman extends javax.swing.JFrame {
         return true;
     }
     private boolean checkFail(){
-        if(this.playerScore <= 0)
+        if(this.playerScore <= 40)
         {
             return true;
         }
@@ -127,6 +127,31 @@ public class Hangman extends javax.swing.JFrame {
         }
         this.playerScore += offset;
         score_label.setText(Integer.toString(this.playerScore));
+    }
+    private void updateImage(int score)
+    {
+        switch(score){
+            case 90:
+                hangman_visual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/step 5.png")));
+                return;
+            case 80:
+                hangman_visual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/step 6.png")));
+                return;
+            case 70:
+                hangman_visual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/step 7.png")));
+                return;
+            case 60:
+                hangman_visual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/step 8.png")));
+                return;
+            case 50:
+                hangman_visual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/step 9.png")));
+                return;
+            case 40:
+                hangman_visual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/step 10.png")));
+                return;
+                
+                
+        }
     }
     
     public Hangman() {
@@ -156,6 +181,7 @@ public class Hangman extends javax.swing.JFrame {
         //date and time
         showDate();
         showTime();
+        
         
     }
     // Methods to show Time and Date
@@ -191,6 +217,7 @@ public class Hangman extends javax.swing.JFrame {
         Time = new javax.swing.JLabel();
         score_title = new javax.swing.JLabel();
         score_label = new javax.swing.JLabel();
+        hangman_visual = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -228,6 +255,10 @@ public class Hangman extends javax.swing.JFrame {
         score_label.setText("100");
         getContentPane().add(score_label);
         score_label.setBounds(60, 80, 40, 30);
+
+        hangman_visual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/step 4.png"))); // NOI18N
+        getContentPane().add(hangman_visual);
+        hangman_visual.setBounds(210, 110, 170, 100);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -291,9 +322,11 @@ public class Hangman extends javax.swing.JFrame {
         {
             javax.swing.JButton button = new javax.swing.JButton();
             button.setText("" + alphabet);
+            button.setOpaque(true);
+            button.setBounds(location_x, location_y, length, width);
             
             getContentPane().add(button);
-            button.setBounds(location_x, location_y, length, width);
+            
             //ActionListeners
             button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -345,19 +378,20 @@ public class Hangman extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Wrong!");
             int penalty = -10;
             this.updateScore(penalty);
+            this.updateImage(this.playerScore);
             this.disableButton(evt.getActionCommand());
         }
         
         if(checkComplete())
         {
-            MenuScreen ms = new MenuScreen();
+            PlayerScore ms = new PlayerScore(this.playerScore);
             ms.setVisible(true);
             dispose();
         }
         if(checkFail())
         {
             JOptionPane.showMessageDialog(null, "Lose!");
-            MenuScreen ms = new MenuScreen();
+            PlayerScore ms = new PlayerScore(this.playerScore);
             ms.setVisible(true);
             dispose();
         }
@@ -366,42 +400,43 @@ public class Hangman extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Hangman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Hangman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Hangman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Hangman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Hangman().setVisible(true);
-                
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Hangman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Hangman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Hangman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Hangman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Hangman().setVisible(true);
+//                
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Date;
     private javax.swing.JLabel Time;
+    private javax.swing.JLabel hangman_visual;
     private javax.swing.JLabel score_label;
     private javax.swing.JLabel score_title;
     private javax.swing.JButton skipButton;
