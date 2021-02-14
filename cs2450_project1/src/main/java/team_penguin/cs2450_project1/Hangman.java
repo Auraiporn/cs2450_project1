@@ -358,8 +358,9 @@ public class Hangman extends javax.swing.JFrame {
 
     private void AllButtonActionPerformed(java.awt.event.ActionEvent evt) {
         
-        JOptionPane.showMessageDialog(null, "The word is " + this.word);
-        JOptionPane.showMessageDialog(null, "You've pressed the " + evt.getActionCommand() + " button!");
+        // For local testing purpose
+        //System.out.println("The word is " + this.word);
+        //JOptionPane.showMessageDialog(null, "You've pressed the " + evt.getActionCommand() + " button!");
         if(mark(search(this.word, evt.getActionCommand())))
         {
             JOptionPane.showMessageDialog(null, "You've found one letter!");
