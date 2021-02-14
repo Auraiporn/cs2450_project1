@@ -40,6 +40,7 @@ public class CreditScreen extends javax.swing.JFrame {
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Credit");
         setResizable(false);
         getContentPane().setLayout(null);
 

@@ -220,6 +220,7 @@ public class Hangman extends javax.swing.JFrame {
         hangman_visual = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Hang Man Game");
         getContentPane().setLayout(null);
 
         skipButton.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N

@@ -55,6 +55,7 @@ public class PlayerScore extends javax.swing.JFrame {
         Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Player Score");
         getContentPane().setLayout(null);
 
         End.setFont(new java.awt.Font("Stencil", 1, 28)); // NOI18N
@@ -71,7 +72,7 @@ public class PlayerScore extends javax.swing.JFrame {
         userscoreTitle.setForeground(new java.awt.Color(255, 255, 255));
         userscoreTitle.setText("Your Score");
         getContentPane().add(userscoreTitle);
-        userscoreTitle.setBounds(197, 64, 199, 46);
+        userscoreTitle.setBounds(197, 64, 189, 46);
 
         Score.setFont(new java.awt.Font("Snap ITC", 1, 38)); // NOI18N
         Score.setForeground(new java.awt.Color(255, 255, 255));

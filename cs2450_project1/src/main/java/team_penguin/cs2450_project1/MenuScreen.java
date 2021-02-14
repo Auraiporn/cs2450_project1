@@ -37,6 +37,7 @@ public class MenuScreen extends javax.swing.JFrame {
         BackgroundPicture = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu Screen");
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(null);
 

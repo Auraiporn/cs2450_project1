@@ -73,6 +73,7 @@ public class ScoreScreen extends javax.swing.JFrame {
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("High Scores");
         setResizable(false);
         getContentPane().setLayout(null);
 
