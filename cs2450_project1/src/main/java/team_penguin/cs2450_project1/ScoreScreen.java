@@ -7,6 +7,8 @@ package team_penguin.cs2450_project1;
 
 import java.io.File;
 import java.io.FileNotFoundException; 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner; 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -22,12 +24,16 @@ public class ScoreScreen extends javax.swing.JFrame {
      * Creates new form ScoreScreen
      */
     private javax.swing.JLabel score_label_group[] = new javax.swing.JLabel[5];
+    private ArrayList<String> score_array;
+    private int playerScore;
     
     public ScoreScreen() {
         initComponents();
         setSize(600,400);
         setLocation(300,200);
         setResizable(false);
+        playerScore = 0;
+        score_array = new ArrayList<String>();
         
         score_label_group[0] = score_top1;
         score_label_group[1] = score_top2;
@@ -36,22 +42,94 @@ public class ScoreScreen extends javax.swing.JFrame {
         score_label_group[4] = score_top5;
         loadScores();
     }
-    //
+    public ScoreScreen(int score){
+        this();
+        this.playerScore = score;
+        
+    }
+    
     private void loadScores()
     {
         try{
             //JOptionPane.showMessageDialog(null,System.getProperty("user.dir"));
             File myFile = new File("./src/main/java/team_penguin/cs2450_project1/score.txt");
             Scanner read = new Scanner(myFile);
-            int i = 0;
             while(read.hasNextLine()){
-                score_label_group[i].setText(read.nextLine());
-                i++;
+                enqueue(read.nextLine());
+            }
+            clearExtra();
+            for(int i = 0; i < score_array.size(); i++)
+            {
+                score_label_group[i].setText(score_array.get(i));
             }
         }
         catch (FileNotFoundException e){
             JOptionPane.showMessageDialog(null, "File not found: score.txt");
         }
+        export();
+    }
+    private Integer firstNumber(String s)
+    {
+        int i = 0;
+        while(i < s.length() && !Character.isDigit(s.charAt(i))){
+            i++;
+        }
+        int j = i;
+        while(j < s.length() && Character.isDigit(s.charAt(j)))
+        {
+            j++;
+        }
+        return Integer.parseInt(s.substring(i,j));
+    }
+    
+    private void enqueue(String s)
+    {
+        boolean addFlag = false;
+        if(score_array.isEmpty())
+        {
+            score_array.add(s);
+            return;
+        }
+        int size = score_array.size();
+        for(int i = 0; i < size; i++)
+        {
+            if(firstNumber(score_array.get(i)) <= firstNumber((s)))
+            {
+                score_array.add(score_array.get(i));
+                score_array.set(i, s);
+                addFlag = true;
+                break;
+            }
+        }
+        if(addFlag == false)
+        {
+            score_array.add(s);
+        }
+    }
+    private void dequeue()
+    {
+       score_array.remove(score_array.size()-1);
+    }
+    private void clearExtra()
+    {
+        while(score_array.size()> 5)
+        {
+            dequeue();
+        }
+    }
+    private void export(){
+        try{
+            FileWriter fileWriter = new FileWriter("./src/main/java/team_penguin/cs2450_project1/score.txt");
+            for(String s:score_array)
+            {
+                fileWriter.write(s + "\n");
+            }
+            fileWriter.close();
+        }
+        catch(IOException e){
+            JOptionPane.showMessageDialog(null, "Fail to write: score.txt");
+        }
+       
     }
 
     /**
@@ -144,37 +222,37 @@ public class ScoreScreen extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(ScoreScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(ScoreScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(ScoreScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(ScoreScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new ScoreScreen().setVisible(true);
-//            }
-//        });
-//    }
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(ScoreScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ScoreScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ScoreScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ScoreScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ScoreScreen().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
