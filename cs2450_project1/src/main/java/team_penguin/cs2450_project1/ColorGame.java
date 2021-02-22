@@ -6,7 +6,12 @@
 package team_penguin.cs2450_project1;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
+import javax.swing.Timer;
 
 /**
  *
@@ -16,13 +21,7 @@ public class ColorGame extends javax.swing.JFrame {
     // For random word
     private static String [] colors = new String[] {"Red", "Yellow", "Green", "Blue", "Purple"}; 
     // For random color
-    private static Color [] colors2 = new Color[] {Color.RED,Color.YELLOW,Color.GREEN,Color.BLUE,new Color(255,0,255)};
-    
-     
-    
-  
-
-    
+    private static Color [] colors2 = new Color[] {Color.RED,Color.YELLOW,Color.GREEN,Color.BLUE,new Color(255,0,255)};   
    
 
     /**
@@ -34,13 +33,36 @@ public class ColorGame extends javax.swing.JFrame {
         setLocation(300,200);
         setResizable(false);
         //display word
-      Random rand = new Random();
-      int word = rand.nextInt(colors.length);
-       Title.setText(colors[word]);
-       // display color  
-      int rand_color = rand.nextInt(colors.length);
+        Random rand = new Random();
+        int word = rand.nextInt(colors.length);
+        Title.setText(colors[word]);
+        // display color  
+        int rand_color = rand.nextInt(colors.length);
         Title.setForeground(colors2[rand_color]);
+        
+        //date and time
+        showDate();
+        showTime();
+        
     
+    }
+    // Methods to show Time and Date
+    void showDate(){
+        Date d = new Date();
+        SimpleDateFormat f = new SimpleDateFormat("MMMM dd, yyyy");
+        Date.setText(f.format(d));
+    }
+    
+    void showTime(){
+        new Timer(0, new ActionListener(){
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               Date d = new Date();
+               SimpleDateFormat f = new SimpleDateFormat("hh:mm:ss a");
+               Time.setText(f.format(d));
+            }
+        }).start();
     }
     
     /**
@@ -58,7 +80,9 @@ public class ColorGame extends javax.swing.JFrame {
         Red = new javax.swing.JButton();
         Purple = new javax.swing.JButton();
         Green = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        Time = new javax.swing.JLabel();
+        Date = new javax.swing.JLabel();
+        skipButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -66,7 +90,7 @@ public class ColorGame extends javax.swing.JFrame {
         Title.setFont(new java.awt.Font("Stencil", 1, 18)); // NOI18N
         Title.setText("Color_Title");
         getContentPane().add(Title);
-        Title.setBounds(190, 70, 160, 50);
+        Title.setBounds(220, 100, 160, 50);
 
         Yellow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/yellow.png"))); // NOI18N
         Yellow.setBorderPainted(false);
@@ -78,7 +102,7 @@ public class ColorGame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Yellow);
-        Yellow.setBounds(210, 200, 140, 120);
+        Yellow.setBounds(210, 170, 140, 120);
 
         Blue.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/blue.png"))); // NOI18N
         Blue.setBorderPainted(false);
@@ -96,15 +120,25 @@ public class ColorGame extends javax.swing.JFrame {
         Red.setBorderPainted(false);
         Red.setContentAreaFilled(false);
         Red.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/red_hover.png"))); // NOI18N
+        Red.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RedActionPerformed(evt);
+            }
+        });
         getContentPane().add(Red);
-        Red.setBounds(20, 200, 160, 120);
+        Red.setBounds(20, 180, 160, 120);
 
         Purple.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/purple.png"))); // NOI18N
         Purple.setBorderPainted(false);
         Purple.setContentAreaFilled(false);
         Purple.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/purple_hover.png"))); // NOI18N
+        Purple.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PurpleActionPerformed(evt);
+            }
+        });
         getContentPane().add(Purple);
-        Purple.setBounds(400, 230, 141, 117);
+        Purple.setBounds(390, 210, 141, 117);
 
         Green.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/green.png"))); // NOI18N
         Green.setBorderPainted(false);
@@ -118,9 +152,25 @@ public class ColorGame extends javax.swing.JFrame {
         getContentPane().add(Green);
         Green.setBounds(40, 30, 140, 120);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/plain-white-background.jpg"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 600, 400);
+        Time.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
+        Time.setText("Time");
+        getContentPane().add(Time);
+        Time.setBounds(470, 0, 120, 30);
+
+        Date.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
+        Date.setText("Date");
+        getContentPane().add(Date);
+        Date.setBounds(280, 0, 170, 30);
+
+        skipButton.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
+        skipButton.setText("End");
+        skipButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                endButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(skipButton);
+        skipButton.setBounds(10, 310, 100, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -136,6 +186,23 @@ public class ColorGame extends javax.swing.JFrame {
     private void GreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GreenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_GreenActionPerformed
+
+    private void PurpleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PurpleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PurpleActionPerformed
+
+    private void RedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RedActionPerformed
+
+    private void endButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endButtonActionPerformed
+        // TODO add your handling code here:
+        // take the user back to the function buttons screen. 
+        MenuScreen ms = new MenuScreen();
+        ms.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_endButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,12 +248,14 @@ public class ColorGame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Blue;
+    private javax.swing.JLabel Date;
     private javax.swing.JButton Green;
     private javax.swing.JButton Purple;
     private javax.swing.JButton Red;
+    private javax.swing.JLabel Time;
     private javax.swing.JLabel Title;
     private javax.swing.JButton Yellow;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton skipButton;
     // End of variables declaration//GEN-END:variables
 
 }
