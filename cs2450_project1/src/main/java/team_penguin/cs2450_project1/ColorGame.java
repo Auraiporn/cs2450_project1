@@ -22,8 +22,7 @@ public class ColorGame extends javax.swing.JFrame {
     private static String [] colors = new String[] {"Red", "Yellow", "Green", "Blue", "Purple"}; 
     // For random color
     private static Color [] colors2 = new Color[] {Color.RED,Color.YELLOW,Color.GREEN,Color.BLUE,new Color(255,0,255)};   
-   
-
+    
     /**
      * Creates new form ColorGame
      */
@@ -43,9 +42,8 @@ public class ColorGame extends javax.swing.JFrame {
         //date and time
         showDate();
         showTime();
-        
-    
     }
+    
     // Methods to show Time and Date
     void showDate(){
         Date d = new Date();
@@ -82,7 +80,6 @@ public class ColorGame extends javax.swing.JFrame {
         Green = new javax.swing.JButton();
         Time = new javax.swing.JLabel();
         Date = new javax.swing.JLabel();
-        skipButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -162,19 +159,9 @@ public class ColorGame extends javax.swing.JFrame {
         getContentPane().add(Date);
         Date.setBounds(280, 0, 170, 30);
 
-        skipButton.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
-        skipButton.setText("End");
-        skipButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                endButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(skipButton);
-        skipButton.setBounds(10, 310, 100, 40);
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void YellowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YellowActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_YellowActionPerformed
@@ -194,15 +181,6 @@ public class ColorGame extends javax.swing.JFrame {
     private void RedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RedActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_RedActionPerformed
-
-    private void endButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endButtonActionPerformed
-        // TODO add your handling code here:
-        // take the user back to the function buttons screen. 
-        MenuScreen ms = new MenuScreen();
-        ms.setVisible(true);
-        dispose();
-
-    }//GEN-LAST:event_endButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,7 +233,10 @@ public class ColorGame extends javax.swing.JFrame {
     private javax.swing.JLabel Time;
     private javax.swing.JLabel Title;
     private javax.swing.JButton Yellow;
-    private javax.swing.JButton skipButton;
     // End of variables declaration//GEN-END:variables
+
+    private Color Color(int i, int i0, int i1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }
