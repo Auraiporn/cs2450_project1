@@ -1,5 +1,5 @@
-Sarah:  100
-Josh:   90
-Tim:    70
-Paul:   60
-Lee:    40
+Sarah: 300
+Josh: 90
+Tim: 70
+Paul: 60
+Lee: 40

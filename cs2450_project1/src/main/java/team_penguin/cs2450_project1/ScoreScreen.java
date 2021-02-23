@@ -129,7 +129,6 @@ public class ScoreScreen extends javax.swing.JFrame {
         catch(IOException e){
             JOptionPane.showMessageDialog(null, "Fail to write: score.txt");
         }
-       
     }
 
     /**

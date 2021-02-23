@@ -38,7 +38,6 @@ public class StartScreen extends javax.swing.JFrame  {
 
         Title = new javax.swing.JLabel();
         TeamName = new javax.swing.JLabel();
-        nextButton = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -64,16 +63,6 @@ public class StartScreen extends javax.swing.JFrame  {
         TeamName.setBounds(150, 260, 290, 70);
         TeamName.getAccessibleContext().setAccessibleDescription("");
 
-        nextButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nextButton.setText("Next");
-        nextButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nextButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(nextButton);
-        nextButton.setBounds(10, 420, 97, 25);
-
         //System.out.println(System.getProperty("java.class.path"));
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/final_bg.jpg"))); // NOI18N
         background.setPreferredSize(new java.awt.Dimension(610, 410));
@@ -82,12 +71,6 @@ public class StartScreen extends javax.swing.JFrame  {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    // This method handles the click next button if a user clicks next, then a main screen will appear
-    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-         MenuScreen menuScreen = new MenuScreen();
-         menuScreen.setVisible(true);
-    }//GEN-LAST:event_nextButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,7 +128,6 @@ public class StartScreen extends javax.swing.JFrame  {
     private javax.swing.JLabel TeamName;
     private javax.swing.JLabel Title;
     private javax.swing.JLabel background;
-    private javax.swing.JButton nextButton;
     // End of variables declaration//GEN-END:variables
 
     

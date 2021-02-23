@@ -5,6 +5,15 @@
  */
 package team_penguin.cs2450_project1;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+import java.util.ArrayList;
+
 /**
  *
  * @author amirc
@@ -15,14 +24,15 @@ public class PlayerScore extends javax.swing.JFrame {
      * Creates new form PlayerScore
      */
     private int score_player; 
+    private String playerName;
+    
+    private ArrayList<Integer> top_score_list;
     public PlayerScore(int score) {
-        initComponents();
-        setSize(600,400);
-        setLocation(300,200);
-        setResizable(false);
-        
+        this();
         score_player = score;
         setScoreText();
+        this.setVisible(true);
+        checkHighScores();
     }
     
     public PlayerScore() {
@@ -31,7 +41,8 @@ public class PlayerScore extends javax.swing.JFrame {
         setLocation(300,200);
         setResizable(false);
         
-        score_player = 0;
+        score_player = 110;
+        top_score_list = new ArrayList<Integer>();
         setScoreText();
     }
     
@@ -39,6 +50,67 @@ public class PlayerScore extends javax.swing.JFrame {
     {
         Score.setText(Integer.toString(score_player));
     }
+    
+    private void checkHighScores()
+    {
+        try{
+            //JOptionPane.showMessageDialog(null,System.getProperty("user.dir"));
+            File myFile = new File("./src/main/java/team_penguin/cs2450_project1/score.txt");
+            Scanner read = new Scanner(myFile);
+            while(read.hasNextLine()){
+                top_score_list.add(firstNumber(read.nextLine()));
+            }
+        }
+        catch (FileNotFoundException e){
+            JOptionPane.showMessageDialog(null, "File not found: score.txt");
+        }
+        
+        int confirmation = 2;
+        for(Integer score : top_score_list )
+        {
+            if(score_player > score)
+            {
+                confirmation = JOptionPane.showConfirmDialog(null,"You score is higher than the current top scores Do you want to be listed?", "Top Score Confirmation", JOptionPane.YES_NO_CANCEL_OPTION);
+                break;
+            }
+        }
+        if(confirmation == 0)
+        {
+            playerName = JOptionPane.showInputDialog("Please enter your name");
+            if(playerName != null)
+            {
+                export();
+            }
+        }
+    }
+    
+    private void export(){
+        try{
+            FileWriter fileWriter = new FileWriter("./src/main/java/team_penguin/cs2450_project1/score.txt",true);
+            BufferedWriter bw = new BufferedWriter(fileWriter);
+            bw.write(playerName + ": " + Integer.toString(score_player));
+            bw.close();
+            fileWriter.close();
+        }
+        catch(IOException e){
+            JOptionPane.showMessageDialog(null, "Fail to write: score.txt");
+        }
+    }
+    
+    private Integer firstNumber(String s)
+    {
+        int i = 0;
+        while(i < s.length() && !Character.isDigit(s.charAt(i))){
+            i++;
+        }
+        int j = i;
+        while(j < s.length() && Character.isDigit(s.charAt(j)))
+        {
+            j++;
+        }
+        return Integer.parseInt(s.substring(i,j));
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

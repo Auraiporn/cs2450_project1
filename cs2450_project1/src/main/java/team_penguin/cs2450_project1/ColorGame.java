@@ -126,8 +126,6 @@ public class ColorGame extends javax.swing.JFrame {
     }
     private void buttonPerformed(java.awt.event.ActionEvent evt)
     {
-        
-        JOptionPane.showMessageDialog(null, "Press a button!" );
         javax.swing.JButton button = (javax.swing.JButton) evt.getSource();
         javax.swing.Icon picture = button.getIcon();
         
@@ -136,6 +134,7 @@ public class ColorGame extends javax.swing.JFrame {
             if(rand_color == checkColorWithText("Yellow"))
             {
                 JOptionPane.showMessageDialog(null, "Guess correctly" );
+                player_Score += 100;
             }
             else{
                 JOptionPane.showMessageDialog(null, "Wrong!" );
@@ -146,6 +145,7 @@ public class ColorGame extends javax.swing.JFrame {
             if(rand_color == checkColorWithText("Blue"))
             {
                 JOptionPane.showMessageDialog(null, "Guess correctly" );
+                player_Score += 100;
             }
             else{
                 JOptionPane.showMessageDialog(null, "Wrong!" );
@@ -156,6 +156,7 @@ public class ColorGame extends javax.swing.JFrame {
             if(rand_color == checkColorWithText("Red"))
             {
                 JOptionPane.showMessageDialog(null, "Guess correctly" );
+                player_Score += 100;
             }
             else{
                 JOptionPane.showMessageDialog(null, "Wrong!" );
@@ -166,6 +167,7 @@ public class ColorGame extends javax.swing.JFrame {
             if(rand_color == checkColorWithText("Purple"))
             {
                 JOptionPane.showMessageDialog(null, "Guess correctly" );
+                player_Score += 100;
             }
             else{
                 JOptionPane.showMessageDialog(null, "Wrong!" );
@@ -176,6 +178,7 @@ public class ColorGame extends javax.swing.JFrame {
             if(rand_color == checkColorWithText("Green"))
             {
                 JOptionPane.showMessageDialog(null, "Guess correctly" );
+                player_Score += 100;
             }
             else{
                 JOptionPane.showMessageDialog(null, "Wrong!" );
@@ -216,35 +219,35 @@ public class ColorGame extends javax.swing.JFrame {
         Yellow.setContentAreaFilled(false);
         Yellow.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/yellow_hover.png"))); // NOI18N
         getContentPane().add(Yellow);
-        Yellow.setBounds(220, 200, 140, 120);
+        Yellow.setBounds(220, 260, 140, 120);
 
         Blue.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/blue.png"))); // NOI18N
         Blue.setBorderPainted(false);
         Blue.setContentAreaFilled(false);
         Blue.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/blue_hover.png"))); // NOI18N
         getContentPane().add(Blue);
-        Blue.setBounds(380, 30, 141, 117);
+        Blue.setBounds(400, 60, 141, 117);
 
         Red.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/red.png"))); // NOI18N
         Red.setBorderPainted(false);
         Red.setContentAreaFilled(false);
         Red.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/red_hover.png"))); // NOI18N
         getContentPane().add(Red);
-        Red.setBounds(30, 200, 160, 120);
+        Red.setBounds(30, 220, 160, 120);
 
         Purple.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/purple.png"))); // NOI18N
         Purple.setBorderPainted(false);
         Purple.setContentAreaFilled(false);
         Purple.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/purple_hover.png"))); // NOI18N
         getContentPane().add(Purple);
-        Purple.setBounds(390, 210, 141, 117);
+        Purple.setBounds(420, 230, 141, 117);
 
         Green.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/green.png"))); // NOI18N
         Green.setBorderPainted(false);
         Green.setContentAreaFilled(false);
         Green.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/green_hover.png"))); // NOI18N
         getContentPane().add(Green);
-        Green.setBounds(50, 70, 140, 120);
+        Green.setBounds(50, 60, 140, 120);
 
         Time.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
         Time.setText("Time");
