@@ -28,6 +28,8 @@ public class ColorGame extends javax.swing.JFrame {
     private int word;
     private int rand_color;
     private int player_score;
+    private int numberOfGuesses; 
+    private final int MAX_ROUNDS = 5;
     
     private ArrayList<javax.swing.JButton> color_button_group;
     
@@ -39,16 +41,12 @@ public class ColorGame extends javax.swing.JFrame {
         setSize(600,400);
         setLocation(300,200);
         setResizable(false);
-        //display word
-        Random rand = new Random();
-        this.word = rand.nextInt(colors.length);
-        Title.setText(colors[word]);
-        // display color  
-        this.rand_color = rand.nextInt(colors.length);
+        
+        displayWord();
+       
+        this.numberOfGuesses = 0;
         this.player_score = 0;
                 
-        Title.setForeground(colors2[rand_color]);
-        
         //Add action listener to all button
         this.color_button_group = new ArrayList<javax.swing.JButton>();
         
@@ -61,12 +59,13 @@ public class ColorGame extends javax.swing.JFrame {
         for(int i = 0; i < color_button_group.size(); i++)
         {
             color_button_group.get(i).addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonPerformed(evt);
-            }
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    if (numberOfGuesses < MAX_ROUNDS) {
+                        buttonPerformed(evt);
+                    }
+                }
             });
         }
-        
         //date and time
         showDate();
         showTime();
@@ -95,7 +94,15 @@ public class ColorGame extends javax.swing.JFrame {
             }
         }).start();
     }
-    
+    public void displayWord (){
+     //display word
+        Random rand = new Random();
+        this.word = rand.nextInt(colors.length);
+        Title.setText(colors[word]);
+        // display color  
+        this.rand_color = rand.nextInt(colors.length);
+        Title.setForeground(colors2[rand_color]);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -115,6 +122,7 @@ public class ColorGame extends javax.swing.JFrame {
     }
     private void buttonPerformed(java.awt.event.ActionEvent evt)
     {
+        
         JOptionPane.showMessageDialog(null, "Press a button!" );
         javax.swing.JButton button = (javax.swing.JButton) evt.getSource();
         javax.swing.Icon picture = button.getIcon();
@@ -169,7 +177,8 @@ public class ColorGame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Wrong!" );
             }
         }
-        
+        numberOfGuesses++;
+        displayWord();
         
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
