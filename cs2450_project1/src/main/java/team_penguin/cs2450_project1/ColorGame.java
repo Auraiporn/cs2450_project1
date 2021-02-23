@@ -27,7 +27,7 @@ public class ColorGame extends javax.swing.JFrame {
     
     private int word;
     private int rand_color;
-    private int player_score;
+    private int player_Score;
     private int numberOfGuesses; 
     private final int MAX_ROUNDS = 5;
     
@@ -45,7 +45,10 @@ public class ColorGame extends javax.swing.JFrame {
         displayWord();
        
         this.numberOfGuesses = 0;
-        this.player_score = 0;
+        this.player_Score = 0;
+        
+        //Display Round
+        Round.setText("Round: " + (numberOfGuesses+1));
                 
         //Add action listener to all button
         this.color_button_group = new ArrayList<javax.swing.JButton>();
@@ -60,9 +63,8 @@ public class ColorGame extends javax.swing.JFrame {
         {
             color_button_group.get(i).addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    if (numberOfGuesses < MAX_ROUNDS) {
-                        buttonPerformed(evt);
-                    }
+                    
+                    buttonPerformed(evt);
                 }
             });
         }
@@ -73,7 +75,7 @@ public class ColorGame extends javax.swing.JFrame {
     public ColorGame(int score)
     {
         this();
-        this.player_score = score;
+        this.player_Score = score;
     }
     
     // Methods to show Time and Date
@@ -102,6 +104,8 @@ public class ColorGame extends javax.swing.JFrame {
         // display color  
         this.rand_color = rand.nextInt(colors.length);
         Title.setForeground(colors2[rand_color]);
+        // Update round
+        Round.setText("Round: " + (numberOfGuesses+1));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -178,6 +182,11 @@ public class ColorGame extends javax.swing.JFrame {
             }
         }
         numberOfGuesses++;
+        if(numberOfGuesses >= MAX_ROUNDS){
+            PlayerScore ms = new PlayerScore(player_Score);
+            ms.setVisible(true);
+            dispose();
+        }
         displayWord();
         
     }
@@ -191,6 +200,7 @@ public class ColorGame extends javax.swing.JFrame {
         Purple = new javax.swing.JButton();
         Green = new javax.swing.JButton();
         Time = new javax.swing.JLabel();
+        Round = new javax.swing.JLabel();
         Date = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -206,7 +216,7 @@ public class ColorGame extends javax.swing.JFrame {
         Yellow.setContentAreaFilled(false);
         Yellow.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/yellow_hover.png"))); // NOI18N
         getContentPane().add(Yellow);
-        Yellow.setBounds(210, 170, 140, 120);
+        Yellow.setBounds(220, 200, 140, 120);
 
         Blue.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/blue.png"))); // NOI18N
         Blue.setBorderPainted(false);
@@ -220,7 +230,7 @@ public class ColorGame extends javax.swing.JFrame {
         Red.setContentAreaFilled(false);
         Red.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/red_hover.png"))); // NOI18N
         getContentPane().add(Red);
-        Red.setBounds(20, 180, 160, 120);
+        Red.setBounds(30, 200, 160, 120);
 
         Purple.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/purple.png"))); // NOI18N
         Purple.setBorderPainted(false);
@@ -234,12 +244,17 @@ public class ColorGame extends javax.swing.JFrame {
         Green.setContentAreaFilled(false);
         Green.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/green_hover.png"))); // NOI18N
         getContentPane().add(Green);
-        Green.setBounds(40, 30, 140, 120);
+        Green.setBounds(50, 70, 140, 120);
 
         Time.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
         Time.setText("Time");
         getContentPane().add(Time);
         Time.setBounds(470, 0, 120, 30);
+
+        Round.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
+        Round.setText("Round: ");
+        getContentPane().add(Round);
+        Round.setBounds(30, 10, 170, 30);
 
         Date.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
         Date.setText("Date");
@@ -293,6 +308,7 @@ public class ColorGame extends javax.swing.JFrame {
     private javax.swing.JButton Green;
     private javax.swing.JButton Purple;
     private javax.swing.JButton Red;
+    private javax.swing.JLabel Round;
     private javax.swing.JLabel Time;
     private javax.swing.JLabel Title;
     private javax.swing.JButton Yellow;

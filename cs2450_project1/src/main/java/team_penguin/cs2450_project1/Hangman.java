@@ -347,7 +347,7 @@ public class Hangman extends javax.swing.JFrame {
     }
     private void skipButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skipButtonActionPerformed
         // TODO add your handling code here:
-        PlayerScore ms = new PlayerScore();
+        ColorGame ms = new ColorGame();
         ms.setVisible(true);
         dispose();
         
@@ -382,14 +382,14 @@ public class Hangman extends javax.swing.JFrame {
         
         if(checkComplete())
         {
-            PlayerScore ms = new PlayerScore(this.playerScore);
+            ColorGame ms = new ColorGame(this.playerScore);
             ms.setVisible(true);
             dispose();
         }
         if(checkFail())
         {
             JOptionPane.showMessageDialog(null, "Lose!");
-            PlayerScore ms = new PlayerScore(this.playerScore);
+            ColorGame ms = new ColorGame(this.playerScore);
             ms.setVisible(true);
             dispose();
         }
