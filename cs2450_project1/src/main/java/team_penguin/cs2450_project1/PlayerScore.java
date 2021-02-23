@@ -100,6 +100,10 @@ public class PlayerScore extends javax.swing.JFrame {
     private Integer firstNumber(String s)
     {
         int i = 0;
+        while(i < s.length() && s.charAt(i)!= ':')
+        {
+            i++;
+        }
         while(i < s.length() && !Character.isDigit(s.charAt(i))){
             i++;
         }
