@@ -34,6 +34,9 @@ public class ColorGame extends javax.swing.JFrame {
     private ArrayList<Integer> position_x;
     private ArrayList<Integer> position_y;
     
+    private int prevLayout;
+    private int numOfLayout;
+    
     private int word;
     private int rand_color;
     private int player_Score;
@@ -57,6 +60,8 @@ public class ColorGame extends javax.swing.JFrame {
        
         this.numberOfGuesses = 0;
         this.player_Score = 0;
+        this.prevLayout = 0;
+        this.numOfLayout = 3;
         
         //Display Round
         Round.setText("Round: " + (numberOfGuesses+1));
@@ -122,15 +127,22 @@ public class ColorGame extends javax.swing.JFrame {
         
         //Set position layout
         //Only 3 layout currently
-        this.setRandomLayout(rand.nextInt(3));
+        this.setRandomLayout(rand.nextInt(numOfLayout));
     }
     public void setRandomLayout(int layout)
     {
+        // Randomizer
+        Random rand = new Random();
+        //Make sure does not repeat previous
+        while(layout == this.prevLayout)
+        {
+            layout = rand.nextInt(numOfLayout);
+        }
+        this.prevLayout = layout;
+             
         //Variables to access the correct row
         layout *= 2;
         int curr = 0;
-        // Randomizer
-        Random rand = new Random();
         
         //Load the file to obtain the coordinates
         try{
@@ -275,9 +287,9 @@ public class ColorGame extends javax.swing.JFrame {
         Time = new javax.swing.JLabel();
         Round = new javax.swing.JLabel();
         Date = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Color Game");
         getContentPane().setLayout(null);
 
         Title.setFont(new java.awt.Font("Stencil", 1, 18)); // NOI18N
@@ -335,10 +347,6 @@ public class ColorGame extends javax.swing.JFrame {
         getContentPane().add(Date);
         Date.setBounds(280, 0, 170, 30);
 
-        jButton1.setText("jButton1");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(0, 340, 580, 23);
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
@@ -390,7 +398,6 @@ public class ColorGame extends javax.swing.JFrame {
     private javax.swing.JLabel Time;
     private javax.swing.JLabel Title;
     private javax.swing.JButton Yellow;
-    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 
 }
