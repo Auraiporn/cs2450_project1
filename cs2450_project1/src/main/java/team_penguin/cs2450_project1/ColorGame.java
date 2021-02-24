@@ -29,7 +29,7 @@ public class ColorGame extends javax.swing.JFrame {
     // For random word
     private static String [] colors = new String[] {"Red", "Yellow", "Green", "Blue", "Purple"}; 
     // For random color
-    private static Color [] colors2 = new Color[] {Color.RED,Color.YELLOW,Color.GREEN,Color.BLUE,new Color(255,0,255)};  
+    private static Color [] colors2 = new Color[] {Color.RED,Color.YELLOW,Color.GREEN,Color.BLUE,new Color(153,102,255)};  
     
     private ArrayList<Integer> position_x;
     private ArrayList<Integer> position_y;
@@ -95,6 +95,7 @@ public class ColorGame extends javax.swing.JFrame {
         this();
         this.player_Score = score;
     }
+    
     
     // Methods to show Time and Date
     void showDate(){
@@ -287,6 +288,7 @@ public class ColorGame extends javax.swing.JFrame {
         Time = new javax.swing.JLabel();
         Round = new javax.swing.JLabel();
         Date = new javax.swing.JLabel();
+        Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Color Game");
@@ -347,19 +349,23 @@ public class ColorGame extends javax.swing.JFrame {
         getContentPane().add(Date);
         Date.setBounds(280, 0, 170, 30);
 
+        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/plain-white-background.jpg"))); // NOI18N
+        getContentPane().add(Background);
+        Background.setBounds(0, 0, 600, 400);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    //public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
+    /*    try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -374,21 +380,22 @@ public class ColorGame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ColorGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ColorGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        } */
         //</editor-fold>
          
         
         /* Create and display the form */
         
-        java.awt.EventQueue.invokeLater(new Runnable() {
+  /*      java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ColorGame().setVisible(true);
             }
         });
-    }
+    } */
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Background;
     private javax.swing.JButton Blue;
     private javax.swing.JLabel Date;
     private javax.swing.JButton Green;
