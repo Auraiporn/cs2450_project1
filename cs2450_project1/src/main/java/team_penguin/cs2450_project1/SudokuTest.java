@@ -20,7 +20,7 @@ import javax.swing.KeyStroke;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import java.awt.Graphics2D;
+import java.util.ArrayList;
 import javax.swing.Timer;
 
 /**
@@ -57,6 +57,12 @@ public class SudokuTest extends javax.swing.JFrame {
     private int [][] solution_matrix;
     private final int SUDOKU_SIZE = 9;
     private int [][] initial_matrix;
+    private ArrayList<Integer> acceptable_answer;
+    private int playerScore;
+    private final int initial_score;
+    private int [][] penalty_matrix;
+    private final int penalty = 10;
+    
     public SudokuTest() {
         initComponents();
         
@@ -66,19 +72,46 @@ public class SudokuTest extends javax.swing.JFrame {
         setLocation(300,200);
         setResizable(false);  
         
+        //Initialize board
         sudoku_board = new javax.swing.JTextField [SUDOKU_SIZE][SUDOKU_SIZE];
         solution_matrix = new int [SUDOKU_SIZE][SUDOKU_SIZE];
         this.loadSolution("./src/main/java/team_penguin/cs2450_project1/sudoku_solution.txt",this.solution_matrix);
         initial_matrix = new int [SUDOKU_SIZE][SUDOKU_SIZE];
         this.loadSolution("./src/main/java/team_penguin/cs2450_project1/initial_matrix.txt",this.initial_matrix);
+        this.penalty_matrix = new int[SUDOKU_SIZE][SUDOKU_SIZE];
         
+        //initialize accept answer
+        acceptable_answer = new ArrayList<Integer>();
+        for(int i = 1; i < 10;i++)
+        {
+            acceptable_answer.add(i);
+        }
+        
+        //Show time
         showDate();
         showTime();
         
+        //Create keybindings
         keybindings();
-        
+                
+        //Create sudoku
         generateBoard();
         
+        //set player score
+        initial_score = 540;
+        playerScore = initial_score;
+        
+        this.showScore();
+        
+        this.testSetup();
+
+        
+    }
+    public SudokuTest(int score)
+    {
+        this();
+        this.playerScore = score + initial_score;
+        this.showScore();
     }
     
     void showDate(){
@@ -97,6 +130,91 @@ public class SudokuTest extends javax.swing.JFrame {
                Time.setText(f.format(d));
             }
         }).start();
+    }
+    
+    private void testSetup()
+    {
+        for(int i = 0; i < 9; i++)
+        {
+            for(int j = 0; j < 9; j++)
+            {
+                sudoku_board[i][j].setText(Integer.toString(this.solution_matrix[i][j]));
+            }
+        }  
+    }
+    
+    private void showScore()
+    {
+        this.score.setText(Integer.toString(this.playerScore));
+    }
+    
+    private void clearColor()
+    {
+        for(int i = 0; i < 9; i++)
+        {
+            for(int j = 0; j < 9; j++)
+            {
+                if(sudoku_board[i][j].getBackground() == Color.red)
+                {
+                    sudoku_board[i][j].setBackground(Color.white);
+                }
+            }
+        }  
+    }
+    
+    private boolean checkInput()
+    {
+        this.clearColor();
+        for(int i = 0; i < 9; i++)
+        {
+            for(int j = 0; j < 9; j++)
+            {
+                //Check for missing field
+                if(this.sudoku_board[i][j].getText().equals(""))
+                {
+                    JOptionPane.showMessageDialog(null, "Enter missing field");
+                    sudoku_board[i][j].setBackground(Color.red);
+                    return false;
+                }
+                // Convert getText() to int
+                try{
+                    if(!this.acceptable_answer.contains(Integer.parseInt(this.sudoku_board[i][j].getText())))
+                    {
+                        JOptionPane.showMessageDialog(null, "Enter number 1-9!");
+                        sudoku_board[i][j].setBackground(Color.red);
+                        return false;
+                    }
+                }
+                catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(null, "Enter number 1-9!");
+                    sudoku_board[i][j].setBackground(Color.red);
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    private void submit()
+    {
+        this.clearColor();
+        for(int i = 0; i < 9; i++)
+        {
+            for(int j = 0; j < 9; j++)
+            {
+                if(!this.sudoku_board[i][j].getText().equals(Integer.toString(this.solution_matrix[i][j])) && this.penalty_matrix[i][j] == 0)
+                {
+                    this.penalty_matrix[i][j] = 1;
+                    this.playerScore -= this.penalty;
+                    this.sudoku_board[i][j].setBackground(Color.red);
+                    this.showScore();
+                }
+                else if(!this.sudoku_board[i][j].getText().equals(Integer.toString(this.solution_matrix[i][j])) && this.penalty_matrix[i][j] == 1)
+                {
+                    this.sudoku_board[i][j].setBackground(Color.red);
+                }
+            }
+        }
     }
     
     private void loadSolution(String filepath, int [][] matrix)
@@ -203,7 +321,7 @@ public class SudokuTest extends javax.swing.JFrame {
             String PopMenu = "dm";
             getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"),PopMenu); 
             getRootPane().getActionMap().put(PopMenu,dm);    
-        
+            
 }
     
    
@@ -216,20 +334,32 @@ public class SudokuTest extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        button_submit = new javax.swing.JButton();
+        button_quit = new javax.swing.JButton();
         Date = new javax.swing.JLabel();
         Time = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        title = new javax.swing.JLabel();
+        score_title = new javax.swing.JLabel();
+        score = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Submit");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 298, -1, -1));
+        button_submit.setText("Submit");
+        button_submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_submitActionPerformed(evt);
+            }
+        });
+        getContentPane().add(button_submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 298, -1, -1));
 
-        jButton2.setText("Quit");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(496, 296, -1, -1));
+        button_quit.setText("Quit");
+        button_quit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_quitActionPerformed(evt);
+            }
+        });
+        getContentPane().add(button_quit, new org.netbeans.lib.awtextra.AbsoluteConstraints(496, 296, -1, -1));
 
         Date.setText("Date");
         getContentPane().add(Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 110, 23));
@@ -237,13 +367,32 @@ public class SudokuTest extends javax.swing.JFrame {
         Time.setText("Time");
         getContentPane().add(Time, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 97, 25));
 
-        jLabel1.setFont(new java.awt.Font("Ravie", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 153, 153));
-        jLabel1.setText("Sudoku");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 100, 30));
+        title.setFont(new java.awt.Font("Ravie", 1, 18)); // NOI18N
+        title.setForeground(new java.awt.Color(0, 153, 153));
+        title.setText("Sudoku");
+        getContentPane().add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 100, 30));
+
+        score_title.setText("Score");
+        getContentPane().add(score_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
+
+        score.setText("0");
+        getContentPane().add(score, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 30, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void button_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_submitActionPerformed
+        if(this.checkInput())
+        {
+            this.submit();
+        }
+    }//GEN-LAST:event_button_submitActionPerformed
+
+    private void button_quitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_quitActionPerformed
+        PlayerScore ms = new PlayerScore(this.playerScore);
+        ms.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_button_quitActionPerformed
     
     
     /**
@@ -285,9 +434,11 @@ public class SudokuTest extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Date;
     private javax.swing.JLabel Time;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton button_quit;
+    private javax.swing.JButton button_submit;
+    private javax.swing.JLabel score;
+    private javax.swing.JLabel score_title;
+    private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 
     

@@ -269,7 +269,7 @@ public class ColorGame extends javax.swing.JFrame {
         }
         numberOfGuesses++;
         if(numberOfGuesses >= MAX_ROUNDS){
-            PlayerScore ms = new PlayerScore(player_Score);
+            SudokuTest ms = new SudokuTest(player_Score);
             ms.setVisible(true);
             dispose();
         }
