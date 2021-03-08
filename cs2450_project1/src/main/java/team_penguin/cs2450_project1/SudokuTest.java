@@ -213,6 +213,11 @@ public class SudokuTest extends javax.swing.JFrame {
                 {
                     this.sudoku_board[i][j].setBackground(Color.red);
                 }
+                else
+                {
+                    this.sudoku_board[i][j].setBackground(Color.lightGray);
+                    this.sudoku_board[i][j].setEditable(false);
+                }
             }
         }
     }
