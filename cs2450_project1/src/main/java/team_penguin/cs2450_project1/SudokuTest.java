@@ -7,12 +7,18 @@ package team_penguin.cs2450_project1;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 /**
@@ -24,6 +30,10 @@ public class SudokuTest extends javax.swing.JFrame {
     /**
      * Creates new form Sudoku
      */
+    private javax.swing.JTextField [][] sudoku_board;
+    private int [][] solution_matrix;
+    private final int SUDOKU_SIZE = 9;
+    private int [][] initial_matrix;
     public SudokuTest() {
         initComponents();
         
@@ -32,6 +42,12 @@ public class SudokuTest extends javax.swing.JFrame {
         setSize(600,400);
         setLocation(300,200);
         setResizable(false);  
+        
+        sudoku_board = new javax.swing.JTextField [SUDOKU_SIZE][SUDOKU_SIZE];
+        solution_matrix = new int [SUDOKU_SIZE][SUDOKU_SIZE];
+        this.loadSolution("./src/main/java/team_penguin/cs2450_project1/sudoku_solution.txt",this.solution_matrix);
+        initial_matrix = new int [SUDOKU_SIZE][SUDOKU_SIZE];
+        this.loadSolution("./src/main/java/team_penguin/cs2450_project1/initial_matrix.txt",this.initial_matrix);
         
         showDate();
         showTime();
@@ -60,36 +76,64 @@ public class SudokuTest extends javax.swing.JFrame {
         }).start();
     }
     
+    private void loadSolution(String filepath, int [][] matrix)
+    {
+        try{
+            //JOptionPane.showMessageDialog(null,System.getProperty("user.dir"));
+            File myFile = new File(filepath);
+            Scanner read = new Scanner(myFile);
+            int row = 0;
+            int col = 0;
+            while(read.hasNextLine())
+            {
+                String [] values = read.nextLine().split(",");
+                for(String value: values)
+                {
+                    matrix[row][col] = Integer.parseInt(value);
+                    col++;
+                }
+                col = 0;
+                row++;
+            }
+        }
+        catch (FileNotFoundException e){
+            JOptionPane.showMessageDialog(null, "File not found: " + filepath);
+        }
+    }
+    
     private void generateBoard()
     {
         //Generate jPanel container for all textFields
-        
         javax.swing.JPanel GameBoard = new javax.swing.JPanel();
         GameBoard.setBackground(new java.awt.Color(255, 255, 255));
-        GameBoard.setPreferredSize(new java.awt.Dimension(300, 300));
-        GameBoard.setLocation(150, 40);
+        GameBoard.setBounds(150,40,300,300);
+        GameBoard.setBorder(BorderFactory.createLineBorder(Color.darkGray));
         
         //Adjust Layout
-        GameBoard.setLayout(null);
-        
+        GameBoard.setLayout(new FlowLayout(FlowLayout.LEADING,0,0));
         
         //Generate textFields
-        //81
-        for(int i = 0; i < 3; i++)
+        for(int i = 0; i < 9; i++)
         {
-            javax.swing.JTextField textArea = new javax.swing.JTextField();
-            textArea.setEditable(true);
-            textArea.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-            textArea.setPreferredSize(new java.awt.Dimension(6, 47));
-            textArea.setSelectedTextColor(new java.awt.Color(51, 51, 51));
-            textArea.setText("1");
-            textArea.setLocation(10, 10);
+            for(int j = 0; j<9; j++)
+            {
+                javax.swing.JTextField textArea = new javax.swing.JTextField();
+                textArea.setEditable(true);
+                textArea.setPreferredSize(new java.awt.Dimension(33, 33));
+                textArea.setSelectedTextColor(new java.awt.Color(51, 51, 51));
+                textArea.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+                GameBoard.add(textArea);
+                sudoku_board[i][j] = textArea;
+                if(this.initial_matrix[i][j] != 0)
+                {
+                    sudoku_board[i][j].setText(Integer.toString(this.initial_matrix[i][j]));
+                    sudoku_board[i][j].setEditable(false);
+                    sudoku_board[i][j].setBackground(Color.LIGHT_GRAY);
+                }
+            }
         }
+        this.add(GameBoard);
         
-        javax.swing.JLabel hi = new javax.swing.JLabel();
-        hi.setText("hi");
-        getContentPane().add(hi);
-        getContentPane().add(GameBoard);
     }
     
     //Implementaion of esc key to exit program and f1 to pop out display. 
