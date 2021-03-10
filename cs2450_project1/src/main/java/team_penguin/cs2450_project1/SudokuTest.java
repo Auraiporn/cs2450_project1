@@ -71,7 +71,7 @@ public class SudokuTest extends javax.swing.JFrame {
         setSize(600,400);
         setLocation(300,200);
         setResizable(false);  
-        
+        setTitle("Sudoku Game");
         //Initialize board
         sudoku_board = new javax.swing.JTextField [SUDOKU_SIZE][SUDOKU_SIZE];
         solution_matrix = new int [SUDOKU_SIZE][SUDOKU_SIZE];

@@ -30,7 +30,8 @@ public class Sudoku extends javax.swing.JFrame {
         initComponents();
         setSize(600,400);
         setLocation(300,200);
-        setResizable(false);  
+        setResizable(false);
+        setTitle("Sudoku Game");
         
         showDate();
         showTime();
