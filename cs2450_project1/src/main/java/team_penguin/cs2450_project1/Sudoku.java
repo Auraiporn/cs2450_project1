@@ -103,7 +103,7 @@ public class Sudoku extends javax.swing.JFrame {
         
         this.showScore();
         
-        this.testSetup();
+        //this.testSetup();
 
         
     }
