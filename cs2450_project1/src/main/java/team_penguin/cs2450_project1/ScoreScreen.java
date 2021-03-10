@@ -5,14 +5,18 @@
  */
 package team_penguin.cs2450_project1;
 
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileNotFoundException; 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner; 
 import java.util.ArrayList;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
-
+import javax.swing.KeyStroke;
 
 
 /**
@@ -42,6 +46,7 @@ public class ScoreScreen extends javax.swing.JFrame {
         score_label_group[3] = score_top4;
         score_label_group[4] = score_top5;
         loadScores();
+        keybindings();
     }
     public ScoreScreen(int score){
         this();
@@ -135,7 +140,27 @@ public class ScoreScreen extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Fail to write: score.txt");
         }
     }
-
+    public void keybindings(){
+        Action exit = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                System.exit(0);
+            }
+        };
+            String WindowClose = "exit";
+            getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), WindowClose); 
+            getRootPane().getActionMap().put(WindowClose, exit);
+        Action dm = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                    ProjectInfo dm = new ProjectInfo();
+                    dm.setVisible(true);
+                    dispose();
+                }
+            };
+            String PopMenu = "dm";
+            getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"),PopMenu); 
+            getRootPane().getActionMap().put(PopMenu,dm); 
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

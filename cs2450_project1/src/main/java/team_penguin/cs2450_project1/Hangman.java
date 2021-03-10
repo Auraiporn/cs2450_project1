@@ -22,7 +22,7 @@ import javax.swing.Timer;
 import java.awt.Graphics;
 import javax.swing.*; 
 import java.awt.*;
-
+import javax.swing.KeyStroke;
 
 class Line extends JPanel{
     public Line(){
@@ -43,7 +43,6 @@ public class Hangman extends javax.swing.JFrame {
     private ArrayList<javax.swing.JLabel> labelGroup;
     private ArrayList<javax.swing.JButton> buttonGroup;
     private int playerScore;
-    
     public static String hangmanWord()
     {
         //Random number generator
@@ -181,7 +180,7 @@ public class Hangman extends javax.swing.JFrame {
         //date and time
         showDate();
         showTime();
-        
+        keybindings();
         
     }
     // Methods to show Time and Date
@@ -202,7 +201,27 @@ public class Hangman extends javax.swing.JFrame {
             }
         }).start();
     }
-    
+    public void keybindings(){
+        Action exit = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                System.exit(0);
+            }
+        };
+            String WindowClose = "exit";
+            getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), WindowClose); 
+            getRootPane().getActionMap().put(WindowClose, exit);
+        Action dm = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                    ProjectInfo dm = new ProjectInfo();
+                    dm.setVisible(true);
+                    dispose();
+                }
+            };
+            String PopMenu = "dm";
+            getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"),PopMenu); 
+            getRootPane().getActionMap().put(PopMenu,dm); 
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -439,4 +458,5 @@ public class Hangman extends javax.swing.JFrame {
     private javax.swing.JLabel score_title;
     private javax.swing.JButton skipButton;
     // End of variables declaration//GEN-END:variables
+
 }

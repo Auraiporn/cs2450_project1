@@ -5,6 +5,7 @@
  */
 package team_penguin.cs2450_project1;
 
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -13,7 +14,10 @@ import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
-
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 /**
  *
  * @author amirc
@@ -40,7 +44,7 @@ public class PlayerScore extends javax.swing.JFrame {
         setSize(600,400);
         setLocation(300,200);
         setResizable(false);
-        
+        keybindings();
         score_player = 110;
         top_score_list = new ArrayList<Integer>();
         setScoreText();
@@ -50,7 +54,7 @@ public class PlayerScore extends javax.swing.JFrame {
     {
         Score.setText(Integer.toString(score_player));
     }
-    
+
     private void checkHighScores()
     {
         try{
@@ -114,7 +118,27 @@ public class PlayerScore extends javax.swing.JFrame {
         }
         return Integer.parseInt(s.substring(i,j));
     }
-    
+            public void keybindings(){
+        Action exit = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                System.exit(0);
+            }
+        };
+            String WindowClose = "exit";
+            getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), WindowClose); 
+            getRootPane().getActionMap().put(WindowClose, exit);
+        Action dm = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                    ProjectInfo dm = new ProjectInfo();
+                    dm.setVisible(true);
+                    dispose();
+                }
+            };
+            String PopMenu = "dm";
+            getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"),PopMenu); 
+            getRootPane().getActionMap().put(PopMenu,dm); 
+}
 
     /**
      * This method is called from within the constructor to initialize the form.

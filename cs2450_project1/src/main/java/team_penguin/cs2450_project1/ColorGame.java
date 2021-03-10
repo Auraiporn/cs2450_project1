@@ -14,17 +14,20 @@ import java.util.Random;
 import javax.swing.Timer;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-
 import java.io.File;
 import java.io.FileNotFoundException; 
 import java.io.FileWriter;
 import java.util.Scanner; 
 import java.io.IOException;
-
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 /**
  *
  * @author amirc
  */
+
 public class ColorGame extends javax.swing.JFrame {
     // For random word
     private static String [] colors = new String[] {"Red", "Yellow", "Green", "Blue", "Purple"}; 
@@ -89,6 +92,7 @@ public class ColorGame extends javax.swing.JFrame {
         //date and time
         showDate();
         showTime();
+        keybindings();
     }
     public ColorGame(int score)
     {
@@ -115,6 +119,27 @@ public class ColorGame extends javax.swing.JFrame {
             }
         }).start();
     }
+        public void keybindings(){
+        Action exit = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                System.exit(0);
+            }
+        };
+            String WindowClose = "exit";
+            getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), WindowClose); 
+            getRootPane().getActionMap().put(WindowClose, exit);
+        Action dm = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                    ProjectInfo dm = new ProjectInfo();
+                    dm.setVisible(true);
+                    dispose();
+                }
+            };
+            String PopMenu = "dm";
+            getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"),PopMenu); 
+            getRootPane().getActionMap().put(PopMenu,dm); 
+}
     public void displayWord (){
      //display word
         Random rand = new Random();

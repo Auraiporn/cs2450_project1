@@ -17,7 +17,6 @@ import javax.swing.Timer;
 
 
 
-
 /**
  *
  * @author amirc
@@ -64,6 +63,16 @@ public class Sudoku extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
         dispose();
         System.exit(0);
+        Action dm = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                    ProjectInfo dm = new ProjectInfo();
+                    dm.setVisible(true);
+                    dispose();
+                }
+            };
+            String PopMenu = "dm";
+            getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"),PopMenu); 
+            getRootPane().getActionMap().put(PopMenu,dm); 
     }
  };
         String WindowClose = "exit";

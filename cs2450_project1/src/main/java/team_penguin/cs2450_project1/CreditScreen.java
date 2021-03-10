@@ -10,6 +10,11 @@ package team_penguin.cs2450_project1;
  *
  * @author acer
  */
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 public class CreditScreen extends javax.swing.JFrame {
 
     /**
@@ -20,8 +25,29 @@ public class CreditScreen extends javax.swing.JFrame {
         setSize(600,400);
         setLocation(300,200);
         setResizable(false);
+        keybindings();
     }
-
+        public void keybindings(){
+        Action exit = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                System.exit(0);
+            }
+        };
+            String WindowClose = "exit";
+            getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), WindowClose); 
+            getRootPane().getActionMap().put(WindowClose, exit);
+        Action dm = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                    ProjectInfo dm = new ProjectInfo();
+                    dm.setVisible(true);
+                    dispose();
+                }
+            };
+            String PopMenu = "dm";
+            getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"),PopMenu); 
+            getRootPane().getActionMap().put(PopMenu,dm); 
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
