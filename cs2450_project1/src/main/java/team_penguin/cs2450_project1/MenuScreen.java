@@ -55,7 +55,7 @@ public class MenuScreen extends javax.swing.JFrame {
 
         PlayButton.setFont(new java.awt.Font("Stencil", 1, 26)); // NOI18N
         PlayButton.setText("Play");
-        PlayButton.setToolTipText("click for play ");
+        PlayButton.setToolTipText("play series of games");
         PlayButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PlayButtonActionPerformed(evt);
@@ -66,7 +66,7 @@ public class MenuScreen extends javax.swing.JFrame {
 
         HighScore.setFont(new java.awt.Font("Stencil", 1, 25)); // NOI18N
         HighScore.setText("High Scores");
-        HighScore.setToolTipText("click for high scores");
+        HighScore.setToolTipText("high score from previous players");
         HighScore.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HighScoreActionPerformed(evt);
@@ -77,7 +77,7 @@ public class MenuScreen extends javax.swing.JFrame {
 
         CreditsButton.setFont(new java.awt.Font("Stencil", 1, 26)); // NOI18N
         CreditsButton.setText("Credits");
-        CreditsButton.setToolTipText("click for credits");
+        CreditsButton.setToolTipText("view credits");
         CreditsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CreditsButtonActionPerformed(evt);

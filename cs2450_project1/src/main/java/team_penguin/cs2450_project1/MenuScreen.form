@@ -50,7 +50,7 @@
           <Font name="Stencil" size="26" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Play"/>
-        <Property name="toolTipText" type="java.lang.String" value="click for play "/>
+        <Property name="toolTipText" type="java.lang.String" value="play series of games"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PlayButtonActionPerformed"/>
@@ -67,7 +67,7 @@
           <Font name="Stencil" size="25" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="High Scores"/>
-        <Property name="toolTipText" type="java.lang.String" value="click for high scores"/>
+        <Property name="toolTipText" type="java.lang.String" value="high score from previous players"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="HighScoreActionPerformed"/>
@@ -84,7 +84,7 @@
           <Font name="Stencil" size="26" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Credits"/>
-        <Property name="toolTipText" type="java.lang.String" value="click for credits"/>
+        <Property name="toolTipText" type="java.lang.String" value="view credits"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CreditsButtonActionPerformed"/>

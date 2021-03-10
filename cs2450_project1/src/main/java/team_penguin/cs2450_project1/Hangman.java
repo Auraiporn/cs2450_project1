@@ -341,6 +341,7 @@ public class Hangman extends javax.swing.JFrame {
             button.setText("" + alphabet);
             button.setOpaque(true);
             button.setBounds(location_x, location_y, length, width);
+            button.setToolTipText("Click to try this character!");
             
             getContentPane().add(button);
             

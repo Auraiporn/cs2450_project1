@@ -294,7 +294,7 @@ public class ColorGame extends javax.swing.JFrame {
         }
         numberOfGuesses++;
         if(numberOfGuesses >= MAX_ROUNDS){
-            SudokuTest ms = new SudokuTest(player_Score);
+            Sudoku ms = new Sudoku(player_Score);
             ms.setVisible(true);
             dispose();
         }
@@ -304,6 +304,7 @@ public class ColorGame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Background = new javax.swing.JLabel();
         Title = new javax.swing.JLabel();
         Yellow = new javax.swing.JButton();
         Blue = new javax.swing.JButton();
@@ -313,7 +314,9 @@ public class ColorGame extends javax.swing.JFrame {
         Time = new javax.swing.JLabel();
         Round = new javax.swing.JLabel();
         Date = new javax.swing.JLabel();
-        Background = new javax.swing.JLabel();
+
+        Background.setBackground(new java.awt.Color(204, 204, 204));
+        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/plain-white-background.jpg"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Color Game");
@@ -325,7 +328,7 @@ public class ColorGame extends javax.swing.JFrame {
         Title.setBounds(220, 110, 150, 50);
 
         Yellow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/yellow.png"))); // NOI18N
-        Yellow.setToolTipText("");
+        Yellow.setToolTipText("Match yellow color!");
         Yellow.setBorderPainted(false);
         Yellow.setContentAreaFilled(false);
         Yellow.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/yellow_hover.png"))); // NOI18N
@@ -333,7 +336,7 @@ public class ColorGame extends javax.swing.JFrame {
         Yellow.setBounds(400, 40, 140, 120);
 
         Blue.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/blue.png"))); // NOI18N
-        Blue.setToolTipText("");
+        Blue.setToolTipText("Match blue color!");
         Blue.setBorderPainted(false);
         Blue.setContentAreaFilled(false);
         Blue.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/blue_hover.png"))); // NOI18N
@@ -341,7 +344,7 @@ public class ColorGame extends javax.swing.JFrame {
         Blue.setBounds(10, 60, 141, 117);
 
         Red.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/red.png"))); // NOI18N
-        Red.setToolTipText("");
+        Red.setToolTipText("Match red color!");
         Red.setBorderPainted(false);
         Red.setContentAreaFilled(false);
         Red.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/red_hover.png"))); // NOI18N
@@ -349,7 +352,7 @@ public class ColorGame extends javax.swing.JFrame {
         Red.setBounds(110, 180, 160, 120);
 
         Purple.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/purple.png"))); // NOI18N
-        Purple.setToolTipText("");
+        Purple.setToolTipText("Match purple color!");
         Purple.setBorderPainted(false);
         Purple.setContentAreaFilled(false);
         Purple.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/purple_hover.png"))); // NOI18N
@@ -357,7 +360,7 @@ public class ColorGame extends javax.swing.JFrame {
         Purple.setBounds(430, 160, 141, 117);
 
         Green.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/green.png"))); // NOI18N
-        Green.setToolTipText("");
+        Green.setToolTipText("Match green color!");
         Green.setBorderPainted(false);
         Green.setContentAreaFilled(false);
         Green.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/green_hover.png"))); // NOI18N
@@ -378,10 +381,6 @@ public class ColorGame extends javax.swing.JFrame {
         Date.setText("Date");
         getContentPane().add(Date);
         Date.setBounds(280, 0, 170, 30);
-
-        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/hangman_pic/plain-white-background.jpg"))); // NOI18N
-        getContentPane().add(Background);
-        Background.setBounds(0, 0, 600, 400);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
