@@ -270,6 +270,7 @@ public class Hangman extends javax.swing.JFrame {
 
         score_label.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
         score_label.setText("100");
+        score_label.setToolTipText("current score");
         getContentPane().add(score_label);
         score_label.setBounds(60, 80, 40, 30);
 

@@ -374,6 +374,7 @@ public class ColorGame extends javax.swing.JFrame {
 
         Round.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
         Round.setText("Round: ");
+        Round.setToolTipText("current rounds");
         getContentPane().add(Round);
         Round.setBounds(30, 10, 170, 30);
 

@@ -83,6 +83,7 @@ public class PlayerScore extends javax.swing.JFrame {
             playerName = JOptionPane.showInputDialog("Please enter your name");
             if(playerName != null)
             {
+                playerName = playerName.replace(":", "");
                 export();
             }
         }
@@ -178,6 +179,7 @@ public class PlayerScore extends javax.swing.JFrame {
         Score.setFont(new java.awt.Font("Stencil", 1, 40)); // NOI18N
         Score.setForeground(new java.awt.Color(255, 255, 255));
         Score.setText("100");
+        Score.setToolTipText("Final score");
         getContentPane().add(Score);
         Score.setBounds(250, 120, 100, 80);
 

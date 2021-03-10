@@ -1,5 +1,5 @@
-121: 930222: 1010
-11: 800
-Sarah: 300
-Josh: 90
-Tim: 70
+John: 1010
+Han: 800
+Steve: 500
+James: 500
+Sarah: 500

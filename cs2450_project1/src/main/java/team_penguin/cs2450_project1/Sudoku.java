@@ -387,6 +387,7 @@ public class Sudoku extends javax.swing.JFrame {
         getContentPane().add(score_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
 
         score.setText("0");
+        score.setToolTipText("Your current score");
         getContentPane().add(score, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 30, 20));
 
         pack();
