@@ -28,6 +28,7 @@
     <Component class="javax.swing.JButton" name="button_submit">
       <Properties>
         <Property name="text" type="java.lang.String" value="Submit"/>
+        <Property name="toolTipText" type="java.lang.String" value="Submit to check out what you get"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button_submitActionPerformed"/>
@@ -41,6 +42,7 @@
     <Component class="javax.swing.JButton" name="button_quit">
       <Properties>
         <Property name="text" type="java.lang.String" value="Quit"/>
+        <Property name="toolTipText" type="java.lang.String" value="Click me to quit this game"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button_quitActionPerformed"/>

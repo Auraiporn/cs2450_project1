@@ -160,6 +160,7 @@ public class PlayerScore extends javax.swing.JFrame {
 
         End.setFont(new java.awt.Font("Stencil", 1, 28)); // NOI18N
         End.setText("End");
+        End.setToolTipText("Go back to menu");
         End.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EndActionPerformed(evt);

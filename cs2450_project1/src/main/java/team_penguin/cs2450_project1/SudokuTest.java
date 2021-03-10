@@ -103,7 +103,7 @@ public class SudokuTest extends javax.swing.JFrame {
         
         this.showScore();
         
-        this.testSetup();
+        //this.testSetup();
 
         
     }
@@ -351,6 +351,7 @@ public class SudokuTest extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         button_submit.setText("Submit");
+        button_submit.setToolTipText("Submit to check out what you get");
         button_submit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button_submitActionPerformed(evt);
@@ -359,6 +360,7 @@ public class SudokuTest extends javax.swing.JFrame {
         getContentPane().add(button_submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 298, -1, -1));
 
         button_quit.setText("Quit");
+        button_quit.setToolTipText("Click me to quit this game");
         button_quit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button_quitActionPerformed(evt);

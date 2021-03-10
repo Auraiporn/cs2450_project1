@@ -96,6 +96,7 @@ public class CreditScreen extends javax.swing.JFrame {
 
         backButton.setFont(new java.awt.Font("Stencil", 1, 28)); // NOI18N
         backButton.setText("Back");
+        backButton.setToolTipText("Go back to menu");
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);

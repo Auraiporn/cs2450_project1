@@ -244,6 +244,7 @@ public class Hangman extends javax.swing.JFrame {
 
         skipButton.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
         skipButton.setText("Skip");
+        skipButton.setToolTipText("Skip this game");
         skipButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 skipButtonActionPerformed(evt);

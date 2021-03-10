@@ -1051,9 +1051,11 @@ public class Sudoku extends javax.swing.JFrame {
         getContentPane().add(GameBoard, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 303, 303));
 
         jButton1.setText("Submit");
+        jButton1.setToolTipText("Submit to check out what you get");
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 298, -1, -1));
 
         jButton2.setText("Quit");
+        jButton2.setToolTipText("");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
