@@ -195,6 +195,21 @@ public class Sudoku extends javax.swing.JFrame {
         }
         return true;
     }
+    private boolean checkComplete()
+    {
+        for(int i = 0; i < 9; i++)
+        {
+            for(int j = 0; j < 9; j++)
+            {
+                //Check for missing field
+                if(!this.sudoku_board[i][j].getText().equals(Integer.toString(this.solution_matrix[i][j])))
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
     private void submit()
     {
         this.clearColor();
@@ -328,7 +343,7 @@ public class Sudoku extends javax.swing.JFrame {
             };
             String PopMenu = "dm";
             getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"),PopMenu); 
-            getRootPane().getActionMap().put(PopMenu,dm);    
+            getRootPane().getActionMap().put(PopMenu,dm);
             
 }
     
@@ -397,6 +412,12 @@ public class Sudoku extends javax.swing.JFrame {
         if(this.checkInput())
         {
             this.submit();
+        }
+        if(this.checkComplete())
+        {
+            PlayerScore ms = new PlayerScore(this.playerScore);
+            ms.setVisible(true);
+            dispose();
         }
     }//GEN-LAST:event_button_submitActionPerformed
 
