@@ -333,7 +333,7 @@ public class Sudoku extends javax.swing.JFrame {
             getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), WindowClose); 
             getRootPane().getActionMap().put(WindowClose, exit);
 
-        // I tried to implement f1 key but I don't know what I'm doing wrong n it does not do anything when f1 is pressed. 
+        
             Action dm = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                     ProjectInfo dm = new ProjectInfo();

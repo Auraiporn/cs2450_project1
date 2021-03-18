@@ -41,6 +41,7 @@ public class MenuScreen extends javax.swing.JFrame {
         PlayButton = new javax.swing.JButton();
         HighScore = new javax.swing.JButton();
         CreditsButton = new javax.swing.JButton();
+        Pong = new javax.swing.JButton();
         BackgroundPicture = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -86,6 +87,16 @@ public class MenuScreen extends javax.swing.JFrame {
         getContentPane().add(CreditsButton);
         CreditsButton.setBounds(370, 300, 210, 40);
 
+        Pong.setFont(new java.awt.Font("Stencil", 1, 25)); // NOI18N
+        Pong.setText("Pong");
+        Pong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PongActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Pong);
+        Pong.setBounds(370, 150, 210, 40);
+
         BackgroundPicture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/cartoon-arctic-ice-landscape-outdoor-scene-vector-26665194.jpg"))); // NOI18N
         getContentPane().add(BackgroundPicture);
         BackgroundPicture.setBounds(0, 0, 600, 400);
@@ -113,6 +124,13 @@ public class MenuScreen extends javax.swing.JFrame {
         cs.setVisible(true);
         dispose();
     }//GEN-LAST:event_CreditsButtonActionPerformed
+
+    private void PongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PongActionPerformed
+        // TODO add your handling code here:
+        PongScreen p = new PongScreen();
+         p.setVisible(true);
+         dispose();
+    }//GEN-LAST:event_PongActionPerformed
     public void keybindings(){
         Action exit = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
@@ -175,5 +193,6 @@ public class MenuScreen extends javax.swing.JFrame {
     private javax.swing.JButton HighScore;
     private javax.swing.JLabel PenguinPicture;
     private javax.swing.JButton PlayButton;
+    private javax.swing.JButton Pong;
     // End of variables declaration//GEN-END:variables
 }
