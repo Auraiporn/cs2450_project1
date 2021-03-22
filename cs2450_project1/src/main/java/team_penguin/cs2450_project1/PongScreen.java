@@ -24,8 +24,6 @@ import javax.swing.Timer;
 
 public class PongScreen extends javax.swing.JFrame {
     
-
-    	
     public PongScreen() {
         
         initComponents();
@@ -36,9 +34,6 @@ public class PongScreen extends javax.swing.JFrame {
         showDate();
         showTime();
         jPanel1.add(new PongPanel());
-        
-       
-        
         
     }
     
