@@ -209,26 +209,28 @@ public class PongScreen extends javax.swing.JFrame {
         Quit.setBounds(480, 300, 91, 33);
 
         score_player1.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
+        score_player1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         score_player1.setToolTipText("player 2 score");
         getContentPane().add(score_player1);
-        score_player1.setBounds(500, 140, 40, 40);
+        score_player1.setBounds(480, 140, 100, 20);
 
         score_player2.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
+        score_player2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         score_player2.setToolTipText("player 1 score");
         getContentPane().add(score_player2);
-        score_player2.setBounds(40, 140, 40, 40);
+        score_player2.setBounds(20, 140, 100, 20);
 
-        title1.setFont(new java.awt.Font("Stencil", 0, 14)); // NOI18N
-        title1.setText("Player2");
+        title1.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
+        title1.setText("Player2 Score");
         title1.setToolTipText("Player 2");
         getContentPane().add(title1);
-        title1.setBounds(500, 120, 70, 20);
+        title1.setBounds(480, 120, 100, 20);
 
-        title2.setFont(new java.awt.Font("Stencil", 0, 14)); // NOI18N
-        title2.setText("Player1");
-        title2.setToolTipText("Player 1");
+        title2.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
+        title2.setText("Player1 Score");
+        title2.setToolTipText("Player 1 Score");
         getContentPane().add(title2);
-        title2.setBounds(40, 120, 80, 20);
+        title2.setBounds(20, 120, 100, 20);
 
         message.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         message.setForeground(new java.awt.Color(255, 51, 51));
