@@ -2,12 +2,17 @@
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JComponent;
@@ -265,11 +270,22 @@ public class PongScreen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
-class PongPanel extends javax.swing.JPanel{
+class PongPanel extends javax.swing.JPanel {
     Paddle paddle1 = new Paddle(30, 120, 1);
     Paddle paddle2 = new Paddle(310, 120, 2);
     Ball  ball  = new Ball(170, 150);
-    Graphics g;
+
+//    Paddle paddle1; 
+//    Paddle paddle2;
+//    Ball  ball;  
+//    final int BALL_DIAMETER = 15;
+//    final int GAME_WIDTH = 310;
+//    final int GAME_HEIGHT = 350;
+//    Dimension SCREEN_SIZE = new Dimension(GAME_WIDTH, GAME_HEIGHT);
+//    Graphics graphics;
+//    Thread thread;
+//    Random random;
+    
     
     @Override
     protected void paintComponent(Graphics g){
@@ -278,47 +294,109 @@ class PongPanel extends javax.swing.JPanel{
          paddle2.draw(g);
          ball.draw(g);
     }         
-
 }
 
  class Ball { 
+    Random random; 
     int x, y, xDirection, yDirection;
     final int BALL_WIDTH = 15, BALL_HEIGHT = 15;
-	
+
     public Ball(int x, int y){
 	this.x = x;
 	this.y = y;
+        
+        random = new Random();
+        int randomXDirection = random.nextInt(2);
+        if(randomXDirection == 0) {
+            randomXDirection--;
+        }
+        setXDirection(randomXDirection);
+        
+        int randomYDirection = random.nextInt(2);
+        if(randomYDirection == 0) {
+            randomYDirection--;
+        }
+        setYDirection(randomYDirection);
     }
-    public void setYDirection(int yDirection){
-        this.yDirection = yDirection;
+    public void setYDirection(int randomYDirection){
+        this.yDirection = randomYDirection;
     }
-    public void setXDirection(int xDirection){
-        this.xDirection = xDirection;
+    public void setXDirection(int randomXDirection){
+        this.xDirection = randomXDirection;
+    }
+     public void move(){
+        x += xDirection;
+        y += yDirection;
     }
     public void draw(Graphics g){
          // to draw ball
         g.setColor(Color.WHITE);
         g.fillOval(this.x, this.y, BALL_WIDTH, BALL_HEIGHT);
     }
-
 }
 
 class Paddle {
     int x, y, yDirection, id;
     final int PADDLE_WIDTH = 10, PADDLE_HEIGHT = 60;
     Rectangle paddle;
+    final int SPEED = 10;
     
     public Paddle(int x, int y, int id){
 		this.x = x;
 		this.y = y;
 		this.id = id;
-                paddle = new Rectangle(x,y,10,60);
+                paddle = new Rectangle(x,y,PADDLE_WIDTH,PADDLE_HEIGHT);
     }
-    
+    public void keyPressed(KeyEvent e) {
+        if(id==1) {
+            if (e.getKeyCode() == KeyEvent.VK_W){
+                setYDirection(-SPEED);
+                move();
+            }
+            if(e.getKeyCode() == KeyEvent.VK_S){
+                    setYDirection(SPEED);
+                    move();
+            }
+        }
+        if(id==2) {
+            if (e.getKeyCode() == KeyEvent.VK_UP){
+                setYDirection(-SPEED);
+                move();
+            }
+            if(e.getKeyCode() == KeyEvent.VK_DOWN){
+                    setYDirection(SPEED);
+                    move();
+            }
+        }
+    }
+    public void keyReleased(KeyEvent e){
+        if(id==1){
+            if(e.getKeyCode() == KeyEvent.VK_W){
+                setYDirection(0);
+                move();
+            }
+            if(e.getKeyCode() == KeyEvent.VK_S){
+                setYDirection(0);
+                move();
+            }
+        }
+        if(id==2){
+            if(e.getKeyCode() == KeyEvent.VK_UP){
+                setYDirection(0);
+                move();
+            }
+            if(e.getKeyCode() == KeyEvent.VK_DOWN){
+                setYDirection(0);
+                move();
+            }
+        }
+    }
     public void setYDirection(int yDirection){
         this.yDirection = yDirection;
     }
-		
+    public void move() {
+        y = y + yDirection;
+    }
     public void draw(Graphics g) {
 		if(id==1){
                     //to draw left paddle
