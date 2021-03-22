@@ -35,7 +35,7 @@ public class ScoreScreen extends javax.swing.JFrame {
     public ScoreScreen() {
         initComponents();
         setSize(600,400);
-        setLocation(300,200);
+        setLocationRelativeTo(null);
         setResizable(false);
         playerScore = 0;
         score_array = new ArrayList<String>();

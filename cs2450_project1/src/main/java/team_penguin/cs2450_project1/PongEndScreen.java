@@ -15,16 +15,17 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
-public class CreditScreen extends javax.swing.JFrame {
+public class PongEndScreen extends javax.swing.JFrame {
 
     /**
      * Creates new form CreditScreen
      */
-    public CreditScreen() {
+    public PongEndScreen(String name) {
         initComponents();
         setSize(600,400);
         setLocationRelativeTo(null);
         setResizable(false);
+        this.playerName.setText(name);
         keybindings();
     }
         public void keybindings(){
@@ -58,44 +59,24 @@ public class CreditScreen extends javax.swing.JFrame {
     private void initComponents() {
 
         title = new javax.swing.JLabel();
-        credit_2 = new javax.swing.JLabel();
-        credit_3 = new javax.swing.JLabel();
-        credit_1 = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
-        credit_4 = new javax.swing.JLabel();
+        playerName = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Credit");
+        setTitle("Pong Game");
         setResizable(false);
         getContentPane().setLayout(null);
 
         title.setFont(new java.awt.Font("Stencil", 1, 30)); // NOI18N
         title.setForeground(new java.awt.Color(255, 255, 255));
-        title.setText("Credit");
+        title.setText("Victory!");
+        title.setToolTipText("victory message");
         getContentPane().add(title);
-        title.setBounds(240, 30, 120, 60);
-
-        credit_2.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
-        credit_2.setForeground(new java.awt.Color(255, 255, 255));
-        credit_2.setText("Haowen Yin                    011781185");
-        getContentPane().add(credit_2);
-        credit_2.setBounds(90, 150, 440, 30);
-
-        credit_3.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
-        credit_3.setForeground(new java.awt.Color(255, 255, 255));
-        credit_3.setText("Amir Chaudhry           014897025 ");
-        getContentPane().add(credit_3);
-        credit_3.setBounds(90, 200, 440, 30);
-
-        credit_1.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
-        credit_1.setForeground(new java.awt.Color(255, 255, 255));
-        credit_1.setText("Beize Li                            014699412 ");
-        getContentPane().add(credit_1);
-        credit_1.setBounds(90, 100, 450, 30);
+        title.setBounds(230, 60, 160, 60);
 
         backButton.setFont(new java.awt.Font("Stencil", 1, 28)); // NOI18N
-        backButton.setText("Back");
+        backButton.setText("Quit");
         backButton.setToolTipText("Go back to menu");
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,13 +84,14 @@ public class CreditScreen extends javax.swing.JFrame {
             }
         });
         getContentPane().add(backButton);
-        backButton.setBounds(50, 300, 120, 40);
+        backButton.setBounds(230, 270, 120, 40);
 
-        credit_4.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
-        credit_4.setForeground(new java.awt.Color(255, 255, 255));
-        credit_4.setText("Auraiporn Auksorn  014068197");
-        getContentPane().add(credit_4);
-        credit_4.setBounds(90, 250, 440, 30);
+        playerName.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
+        playerName.setForeground(new java.awt.Color(255, 255, 255));
+        playerName.setText("Player!");
+        playerName.setToolTipText("Pong Game winner");
+        getContentPane().add(playerName);
+        playerName.setBounds(240, 170, 240, 30);
 
         background.setBackground(new java.awt.Color(0, 51, 51));
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/team_penguin/cs2450_project1/credit and score.jpg"))); // NOI18N
@@ -163,10 +145,7 @@ public class CreditScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JLabel background;
-    private javax.swing.JLabel credit_1;
-    private javax.swing.JLabel credit_2;
-    private javax.swing.JLabel credit_3;
-    private javax.swing.JLabel credit_4;
+    private javax.swing.JLabel playerName;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

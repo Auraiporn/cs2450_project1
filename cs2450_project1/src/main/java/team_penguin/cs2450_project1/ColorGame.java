@@ -54,7 +54,7 @@ public class ColorGame extends javax.swing.JFrame {
     public ColorGame() {
         initComponents();
         setSize(600,400);
-        setLocation(300,200);
+        setLocationRelativeTo(null);
         setResizable(false);
         
         // Initialized Layout

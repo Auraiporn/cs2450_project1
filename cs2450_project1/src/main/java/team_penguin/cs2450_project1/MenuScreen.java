@@ -21,7 +21,7 @@ public class MenuScreen extends javax.swing.JFrame {
     public MenuScreen() {
         initComponents();
         setSize(600,400);
-        setLocation(300,200);
+        setLocationRelativeTo(null);
         setResizable(false);
         keybindings();
     }
@@ -88,7 +88,7 @@ public class MenuScreen extends javax.swing.JFrame {
         CreditsButton.setBounds(370, 300, 210, 40);
 
         Pong.setFont(new java.awt.Font("Stencil", 1, 25)); // NOI18N
-        Pong.setText("Pong");
+        Pong.setText("Play Pong");
         Pong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PongActionPerformed(evt);

@@ -23,7 +23,7 @@ public class StartScreen extends javax.swing.JFrame  {
     public StartScreen() {
         initComponents();
         setSize(600,400);
-        setLocation(300,200);
+        setLocationRelativeTo(null);
         setResizable(false);
     }
 

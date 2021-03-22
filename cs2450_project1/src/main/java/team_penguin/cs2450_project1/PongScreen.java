@@ -1,8 +1,6 @@
  package team_penguin.cs2450_project1;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -11,14 +9,16 @@ import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.KeyStroke;
 import javax.swing.Timer;
+import java.awt.event.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+import javax.swing.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -29,16 +29,35 @@ import javax.swing.Timer;
 
 public class PongScreen extends javax.swing.JFrame {
     
+    PongPanel gamePanel;
+    Rectangle panelSize = new Rectangle(0, 0, PongPanel.WIDTH, PongPanel.HEIGHT);
+    private int score1;
+    private int score2;
+    private boolean startFlag;
+    private boolean exitFlag;
+    
     public PongScreen() {
         
         initComponents();
         setSize(600,400);
-        setLocation(300,200);
+        setLocationRelativeTo(null);
         setResizable(false);
         setTitle("Pong Game");
+        keybindings();
+        
+        score1 = 0;
+        score2 = 0;
+        startFlag = false;
+        exitFlag = false;
+        
         showDate();
         showTime();
-        jPanel1.add(new PongPanel());
+        
+        gamePanel = new PongPanel();
+        gamePanel.setLocation(120, 70);
+        gamePanel.setBackground(Color.black);
+        
+        getContentPane().add(gamePanel);
         
     }
     
@@ -58,6 +77,43 @@ public class PongScreen extends javax.swing.JFrame {
                Time.setText(f.format(d));
             }
         }).start();
+    }
+    
+    private void updateScore()
+    {
+        this.score_player1.setText(Integer.toString(score1));
+        this.score_player2.setText(Integer.toString(score2));
+        
+        if(score1 >= 100)
+        {
+            setExitFlag(true);
+            PongEndScreen ms = new PongEndScreen("Player 1");
+            ms.setVisible(true);
+            dispose();
+        }
+        else if(score2 >= 100)
+        {
+            setExitFlag(true);
+            PongEndScreen ms = new PongEndScreen("Player 2");
+            ms.setVisible(true);
+            dispose();
+        }
+    }
+    private void setStartFlag(boolean b)
+    {
+        this.startFlag = b;
+        if(b == true)
+        {
+            message.setVisible(false);
+        }
+        else
+        {
+            message.setVisible(true);
+        }
+    }
+    private void setExitFlag(boolean b)
+    {
+        this.exitFlag = b;
     }
     
     //Implementaion of esc key to exit program and f1 to pop out display. 
@@ -97,317 +153,436 @@ public class PongScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ScoreA = new javax.swing.JLabel();
-        Time = new javax.swing.JLabel();
-        Date = new javax.swing.JLabel();
-        Title = new javax.swing.JLabel();
         Background = new javax.swing.JPanel();
-        PlayerA = new javax.swing.JLabel();
-        PlayerB = new javax.swing.JLabel();
-        ScoreB = new javax.swing.JLabel();
+        Title = new javax.swing.JLabel();
+        Date = new javax.swing.JLabel();
+        Time = new javax.swing.JLabel();
         Quit = new javax.swing.JButton();
-        jPanel1 = new PongPanel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
-
-        ScoreA.setFont(new java.awt.Font("Stencil", 3, 24)); // NOI18N
-        ScoreA.setForeground(new java.awt.Color(51, 255, 51));
-        ScoreA.setText("Score");
-        ScoreA.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(153, 0, 153)));
-        getContentPane().add(ScoreA);
-        ScoreA.setBounds(16, 199, 90, 30);
-
-        Time.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
-        Time.setText("Time");
-        getContentPane().add(Time);
-        Time.setBounds(436, 7, 142, 20);
-
-        Date.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
-        Date.setText("Date");
-        getContentPane().add(Date);
-        Date.setBounds(285, 10, 144, 19);
-
-        Title.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
-        Title.setForeground(new java.awt.Color(0, 153, 153));
-        Title.setText("PONG");
-        getContentPane().add(Title);
-        Title.setBounds(29, 22, 70, 25);
-
-        Background.setBackground(new java.awt.Color(255, 255, 255));
-
-        PlayerA.setFont(new java.awt.Font("Stencil", 1, 25)); // NOI18N
-        PlayerA.setForeground(new java.awt.Color(51, 255, 51));
-        PlayerA.setText(" A");
-
-        PlayerB.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
-        PlayerB.setForeground(new java.awt.Color(204, 0, 204));
-        PlayerB.setText("B");
-
-        ScoreB.setFont(new java.awt.Font("Stencil", 3, 24)); // NOI18N
-        ScoreB.setForeground(new java.awt.Color(204, 0, 204));
-        ScoreB.setText("Score");
-        ScoreB.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(153, 0, 153)));
-
-        Quit.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
-        Quit.setText("Quit");
-        Quit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                QuitActionPerformed(evt);
-            }
-        });
-
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.setPreferredSize(new java.awt.Dimension(353, 310));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 353, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
-        );
+        score_player1 = new javax.swing.JLabel();
+        score_player2 = new javax.swing.JLabel();
+        title1 = new javax.swing.JLabel();
+        title2 = new javax.swing.JLabel();
+        message = new javax.swing.JLabel();
 
         javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
         Background.setLayout(BackgroundLayout);
         BackgroundLayout.setHorizontalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BackgroundLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(PlayerA, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
-                        .addComponent(PlayerB, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
-                        .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Quit)
-                            .addComponent(ScoreB, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(36, 36, 36))))
+            .addGap(0, 600, Short.MAX_VALUE)
         );
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BackgroundLayout.createSequentialGroup()
-                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(BackgroundLayout.createSequentialGroup()
-                        .addGap(163, 163, 163)
-                        .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(PlayerA, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(PlayerB, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ScoreB, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(69, 69, 69)
-                        .addComponent(Quit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(BackgroundLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(57, Short.MAX_VALUE))
+            .addGap(0, 390, Short.MAX_VALUE)
         );
 
-        getContentPane().add(Background);
-        Background.setBounds(0, 0, 600, 400);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
+
+        Title.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
+        Title.setForeground(new java.awt.Color(0, 153, 153));
+        Title.setText("PONG");
+        Title.setToolTipText("game title");
+        getContentPane().add(Title);
+        Title.setBounds(30, 20, 70, 25);
+
+        Date.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
+        Date.setText("Date");
+        Date.setToolTipText("current date");
+        getContentPane().add(Date);
+        Date.setBounds(230, 20, 144, 19);
+
+        Time.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
+        Time.setText("Time");
+        Time.setToolTipText("current time");
+        getContentPane().add(Time);
+        Time.setBounds(410, 20, 142, 20);
+
+        Quit.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
+        Quit.setText("Quit");
+        Quit.setToolTipText("Go back to Menu");
+        Quit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QuitActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Quit);
+        Quit.setBounds(480, 300, 91, 33);
+
+        score_player1.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
+        score_player1.setToolTipText("player 2 score");
+        getContentPane().add(score_player1);
+        score_player1.setBounds(500, 140, 40, 40);
+
+        score_player2.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
+        score_player2.setToolTipText("player 1 score");
+        getContentPane().add(score_player2);
+        score_player2.setBounds(40, 140, 40, 40);
+
+        title1.setFont(new java.awt.Font("Stencil", 0, 14)); // NOI18N
+        title1.setText("Player2");
+        title1.setToolTipText("Player 2");
+        getContentPane().add(title1);
+        title1.setBounds(500, 120, 70, 20);
+
+        title2.setFont(new java.awt.Font("Stencil", 0, 14)); // NOI18N
+        title2.setText("Player1");
+        title2.setToolTipText("Player 1");
+        getContentPane().add(title2);
+        title2.setBounds(40, 120, 80, 20);
+
+        message.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
+        message.setForeground(new java.awt.Color(255, 51, 51));
+        message.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        message.setText("Press Space to Start!");
+        message.setToolTipText("start pong game message");
+        getContentPane().add(message);
+        message.setBounds(180, 50, 220, 14);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void QuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitActionPerformed
+        MenuScreen menuScreen = new MenuScreen();
+        menuScreen.setVisible(true);
         dispose();
     }//GEN-LAST:event_QuitActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PongScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PongScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PongScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PongScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PongScreen().setVisible(true);
-            }
-        });
-       
-        
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(PongScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(PongScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(PongScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(PongScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new PongScreen().setVisible(true);
+//            }
+//        });  
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
     private javax.swing.JLabel Date;
-    private javax.swing.JLabel PlayerA;
-    private javax.swing.JLabel PlayerB;
     private javax.swing.JButton Quit;
-    private javax.swing.JLabel ScoreA;
-    private javax.swing.JLabel ScoreB;
     private javax.swing.JLabel Time;
     private javax.swing.JLabel Title;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel message;
+    private javax.swing.JLabel score_player1;
+    private javax.swing.JLabel score_player2;
+    private javax.swing.JLabel title1;
+    private javax.swing.JLabel title2;
     // End of variables declaration//GEN-END:variables
-}
-class PongPanel extends javax.swing.JPanel {
-    Paddle paddle1 = new Paddle(30, 120, 1);
-    Paddle paddle2 = new Paddle(310, 120, 2);
-    Ball  ball  = new Ball(170, 150);
 
-//    Paddle paddle1; 
-//    Paddle paddle2;
-//    Ball  ball;  
-//    final int BALL_DIAMETER = 15;
-//    final int GAME_WIDTH = 310;
-//    final int GAME_HEIGHT = 350;
-//    Dimension SCREEN_SIZE = new Dimension(GAME_WIDTH, GAME_HEIGHT);
-//    Graphics graphics;
-//    Thread thread;
-//    Random random;
-    
-    
-    @Override
-    protected void paintComponent(Graphics g){
-        super.paintComponent(g);
-         paddle1.draw(g);
-         paddle2.draw(g);
-         ball.draw(g);
-    }         
-}
-
- class Ball { 
-    Random random; 
-    int x, y, xDirection, yDirection;
-    final int BALL_WIDTH = 15, BALL_HEIGHT = 15;
-
-    public Ball(int x, int y){
-	this.x = x;
-	this.y = y;
+    private class PongPanel extends JPanel implements Runnable{
         
-        random = new Random();
-        int randomXDirection = random.nextInt(2);
-        if(randomXDirection == 0) {
-            randomXDirection--;
-        }
-        setXDirection(randomXDirection);
+        private static final int WIDTH = 350;
+        private static final int HEIGHT = 250;
+        private static final int PADDLE_WIDTH = 5;
+        private static final int PADDLE_HEIGHT = 50;
+        private static final int BALL_DIAMETER = 10;
         
-        int randomYDirection = random.nextInt(2);
-        if(randomYDirection == 0) {
-            randomYDirection--;
+        private Thread gameThread;
+        private Random random;
+        private Paddle paddle1;
+        private Paddle paddle2;
+        private Ball ball;
+        
+        PongPanel()
+        {
+            newPaddles();
+            newBall();
+            this.setPreferredSize(new Dimension(WIDTH,HEIGHT));
+            this.setBounds(panelSize);
+            this.setFocusable(true);
+            this.addKeyListener(new AL());
+            gameThread = new Thread(this);
+            gameThread.start();
         }
-        setYDirection(randomYDirection);
+    
+        public void checkCollision()
+        {
+            // stops paddles at window edges
+            if(paddle1.y <= 0){
+                paddle1.y = 0;
+            }
+            if(paddle1.y >= (HEIGHT-PADDLE_HEIGHT)){
+                paddle1.y = (HEIGHT-PADDLE_HEIGHT);
+            }
+            if(paddle2.y <= 0){
+                paddle2.y = 0;
+            }
+            if(paddle2.y >= (HEIGHT-PADDLE_HEIGHT)){
+                paddle2.y = (HEIGHT-PADDLE_HEIGHT);
+            }
+            // Bound off top and bottom of window edges
+            if(ball.y <= 0){
+                ball.setYDirection(-ball.yVelocity);
+            }
+            if(ball.y >= (HEIGHT-BALL_DIAMETER))
+            {
+                ball.setYDirection(-ball.yVelocity);
+            }
+            // bounces ball off paddles
+            if(ball.intersects(paddle1)){
+                ball.setXDirection(-ball.xVelocity);
+                ball.setYDirection(ball.yVelocity);
+            }
+            if(ball.intersects(paddle2)){
+                ball.setXDirection(-ball.xVelocity);
+                ball.setYDirection(ball.yVelocity);
+            }
+            
+            // give a player point and create new ball
+            if(ball.x <= 0){
+                score2 +=10;
+                newPaddles();
+                newBall();
+                setStartFlag(false);
+            }
+            if(ball.x >= (WIDTH-BALL_DIAMETER)){
+                score1 += 10;
+                newPaddles();
+                newBall();
+                setStartFlag(false);
+            }
+            updateScore();
+        }
+        @Override
+        public void run()
+        {
+            long lastTime = System.nanoTime();
+            double amountOfTicks = 60;
+            double ns = 1000000000 / amountOfTicks;
+            double delta = 0;
+            while(true)
+            {
+                long now = System.nanoTime();
+                delta += (now - lastTime)/ns;
+                lastTime = now;
+//                System.out.println("Current ball x: " + ball.x);
+//                System.out.println("Current ball x: " + ball.y);
+                
+                if(delta >=1)
+                {
+                    move();
+                    checkCollision();
+                    repaint();
+                    delta--;
+                }
+                if(exitFlag)
+                {
+                    break;
+                }
+            }
+        }
+        public void newBall()
+        {
+            ball = new Ball((WIDTH/2)-(BALL_DIAMETER/2),(HEIGHT/2)-(BALL_DIAMETER/2),BALL_DIAMETER, BALL_DIAMETER);
+        }
+        
+        public void newPaddles()
+        {
+            paddle1 = new Paddle(0,(HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH,PADDLE_HEIGHT,1);
+            paddle2 = new Paddle(WIDTH-PADDLE_WIDTH,(HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH,PADDLE_HEIGHT,2);
+        }
+        
+        public void paintComponent(Graphics g)
+        {
+            super.paintComponent(g);
+            draw(g);
+        }
+        public void draw(Graphics g)
+        {
+            this.paddle1.draw(g);
+            this.paddle2.draw(g);
+            this.ball.draw(g);
+        }
+        public void move(){
+            if(startFlag)
+            {
+                paddle1.move();
+                paddle2.move();
+                ball.move();
+            }
+        }
+        public class AL extends KeyAdapter
+        {
+            public void keyPressed(KeyEvent e)
+            {
+                if(startFlag == false)
+                {
+                    if(e.getKeyCode()==KeyEvent.VK_SPACE)
+                    {
+                        setStartFlag(true);
+                        //System.out.println("SPACE");
+                        return;
+                    }
+                    return;
+                }
+                paddle1.keyPressed(e);
+                paddle2.keyPressed(e);
+            }
+            public void keyReleased(KeyEvent e)
+            {
+                paddle1.keyReleased(e);
+                paddle2.keyReleased(e);
+            }
+        }
     }
-    public void setYDirection(int randomYDirection){
-        this.yDirection = randomYDirection;
+
+    private class Paddle extends Rectangle
+    {
+        private int id;
+        private int yVelocity;
+        private int speed = 10;
+    
+        Paddle(int x, int y, int paddle_width, int paddle_height, int id)
+        {
+            super(x,y,paddle_width,paddle_height);
+            this.id = id;
+        }
+        
+        public void keyPressed(KeyEvent e)
+        {
+            switch(id){
+                case 1:
+                    if(e.getKeyCode() == KeyEvent.VK_W){
+                        setYDirection(-speed);
+                        move();
+                    }
+                    if(e.getKeyCode() == KeyEvent.VK_S){
+                        setYDirection(speed);
+                        move();
+                    }
+                    break;
+                case 2:
+                    if(e.getKeyCode() == KeyEvent.VK_UP){
+                        setYDirection(-speed);
+                        move();
+                    }
+                    if(e.getKeyCode() == KeyEvent.VK_DOWN){
+                        setYDirection(speed);
+                        move();
+                    }
+                    break;
+            }
+        }
+        public void keyReleased(KeyEvent e)
+        {
+            switch(id){
+                case 1:
+                    if(e.getKeyCode() == KeyEvent.VK_W){
+                        setYDirection(0);
+                        move();
+                    }
+                    if(e.getKeyCode() == KeyEvent.VK_S){
+                        setYDirection(0);
+                        move();
+                    }
+                    break;
+                case 2:
+                    if(e.getKeyCode() == KeyEvent.VK_UP){
+                        setYDirection(0);
+                        move();
+                    }
+                    if(e.getKeyCode() == KeyEvent.VK_DOWN){
+                        setYDirection(0);
+                        move();
+                    }
+                    break;
+            }
+        }
+        public void setYDirection(int yDirection)
+        {
+            yVelocity = yDirection;
+        }
+        public void move()
+        {
+            y = y + yVelocity;
+        }
+        
+        public void draw(Graphics g)
+        {
+            if(id == 1){
+                g.setColor(Color.blue);
+            }
+            else{
+                g.setColor(Color.red);
+            }
+            g.fillRect(x, y, width, height);
+        }
     }
-    public void setXDirection(int randomXDirection){
-        this.xDirection = randomXDirection;
-    }
-     public void move(){
-        x += xDirection;
-        y += yDirection;
-    }
-    public void draw(Graphics g){
-         // to draw ball
-        g.setColor(Color.WHITE);
-        g.fillOval(this.x, this.y, BALL_WIDTH, BALL_HEIGHT);
+    
+    private class Ball extends Rectangle
+    {
+
+        Random random;
+        private int xVelocity;
+        private int yVelocity;
+        private int initialSpeed = 2;
+
+
+        Ball(int x, int y, int width, int height)
+        {
+            super(x,y,width,height);
+            random = new Random();
+
+            int randomXDirection = random.nextInt(2);
+            if(randomXDirection == 0){
+                randomXDirection--;
+            }
+            setXDirection(randomXDirection*initialSpeed);
+
+            int randomYDirection = random.nextInt(2);
+            if(randomYDirection == 0){
+                randomYDirection--;
+            }
+            setYDirection(randomXDirection*initialSpeed);
+        }
+
+        public void setXDirection(int randomXDirection)
+        {
+            xVelocity = randomXDirection;
+        }
+
+        public void setYDirection(int randomYDirection)
+        {
+            yVelocity = randomYDirection;
+        }
+        public void move()
+        {
+            x += xVelocity;
+            y += yVelocity;
+        }
+
+        public void draw(Graphics g)
+        {
+            g.setColor(Color.white);
+            g.fillOval(x, y, height, width);
+        }
     }
 }
 
-class Paddle {
-    int x, y, yDirection, id;
-    final int PADDLE_WIDTH = 10, PADDLE_HEIGHT = 60;
-    Rectangle paddle;
-    final int SPEED = 10;
-    
-    public Paddle(int x, int y, int id){
-		this.x = x;
-		this.y = y;
-		this.id = id;
-                paddle = new Rectangle(x,y,PADDLE_WIDTH,PADDLE_HEIGHT);
-    }
-    public void keyPressed(KeyEvent e) {
-        if(id==1) {
-            if (e.getKeyCode() == KeyEvent.VK_W){
-                setYDirection(-SPEED);
-                move();
-            }
-            if(e.getKeyCode() == KeyEvent.VK_S){
-                    setYDirection(SPEED);
-                    move();
-            }
-        }
-        if(id==2) {
-            if (e.getKeyCode() == KeyEvent.VK_UP){
-                setYDirection(-SPEED);
-                move();
-            }
-            if(e.getKeyCode() == KeyEvent.VK_DOWN){
-                    setYDirection(SPEED);
-                    move();
-            }
-        }
-    }
-    public void keyReleased(KeyEvent e){
-        if(id==1){
-            if(e.getKeyCode() == KeyEvent.VK_W){
-                setYDirection(0);
-                move();
-            }
-            if(e.getKeyCode() == KeyEvent.VK_S){
-                setYDirection(0);
-                move();
-            }
-        }
-        if(id==2){
-            if(e.getKeyCode() == KeyEvent.VK_UP){
-                setYDirection(0);
-                move();
-            }
-            if(e.getKeyCode() == KeyEvent.VK_DOWN){
-                setYDirection(0);
-                move();
-            }
-        }
-    }
-    public void setYDirection(int yDirection){
-        this.yDirection = yDirection;
-    }
-    public void move() {
-        y = y + yDirection;
-    }
-    public void draw(Graphics g) {
-		if(id==1){
-                    //to draw left paddle
-                    g.setColor(Color.green);
-                    g.fillRect(paddle.x, paddle.y, PADDLE_WIDTH, PADDLE_HEIGHT);
-                }
-		if(id==2){
-                    //to draw right paddle
-                    g.setColor(Color.MAGENTA);
-                    g.fillRect(paddle.x, paddle.y, PADDLE_WIDTH, PADDLE_HEIGHT);
-                }
-    }
-	
-}
+

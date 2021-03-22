@@ -159,7 +159,7 @@ public class Hangman extends javax.swing.JFrame {
         
         //Set the height and width of window screen and do not let user to change the size
         setSize(600,400);
-        setLocation(300,200);
+        setLocationRelativeTo(null);
         setResizable(false);
         
         //Initialize word

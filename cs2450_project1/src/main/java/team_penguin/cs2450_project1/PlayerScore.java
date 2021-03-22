@@ -42,7 +42,7 @@ public class PlayerScore extends javax.swing.JFrame {
     public PlayerScore() {
         initComponents();
         setSize(600,400);
-        setLocation(300,200);
+        setLocationRelativeTo(null);
         setResizable(false);
         keybindings();
         score_player = 110;

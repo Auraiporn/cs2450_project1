@@ -23,7 +23,7 @@ public class ProjectInfo extends javax.swing.JFrame {
     public ProjectInfo() {
         initComponents();
         setSize(600,400);
-        setLocation(300,200);
+        setLocationRelativeTo(null);
         setResizable(false);  
         keybindings();
     }
@@ -62,7 +62,7 @@ public class ProjectInfo extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Stencil", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Soduku Game");
+        jLabel2.setText("Project Info");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(150, 30, 280, 70);
 

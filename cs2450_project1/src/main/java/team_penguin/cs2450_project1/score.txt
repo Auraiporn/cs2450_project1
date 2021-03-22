@@ -1,5 +1,5 @@
-John: 1010
-Han: 800
-Steve: 500
-James: 500
-Sarah: 500
+Josh: 100
+Felix: 90
+John: 95
+Han: 80
+James: 50

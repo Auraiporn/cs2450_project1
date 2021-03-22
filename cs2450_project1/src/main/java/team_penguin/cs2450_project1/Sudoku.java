@@ -8,6 +8,7 @@ package team_penguin.cs2450_project1;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.*;
+import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
@@ -48,7 +49,7 @@ class Sudoku_Border extends JPanel{
         }
     }
 }
-public class Sudoku extends javax.swing.JFrame {
+public class Sudoku extends javax.swing.JFrame{
     
     /**
      * Creates new form Sudoku
@@ -62,6 +63,7 @@ public class Sudoku extends javax.swing.JFrame {
     private final int initial_score;
     private int [][] penalty_matrix;
     private final int penalty = 10;
+    Action fillAnswer;
     
     public Sudoku() {
         initComponents();
@@ -69,9 +71,11 @@ public class Sudoku extends javax.swing.JFrame {
         setLayout(null);
         
         setSize(600,400);
-        setLocation(300,200);
+        setLocationRelativeTo(null);
         setResizable(false);  
         setTitle("Sudoku Game");
+        
+        
         //Initialize board
         sudoku_board = new javax.swing.JTextField [SUDOKU_SIZE][SUDOKU_SIZE];
         solution_matrix = new int [SUDOKU_SIZE][SUDOKU_SIZE];
@@ -104,6 +108,9 @@ public class Sudoku extends javax.swing.JFrame {
         this.showScore();
         
         //this.testSetup();
+        fillAnswer = new FillAnswer();
+        getRootPane().getInputMap().put(KeyStroke.getKeyStroke("F4"), "fill");
+        getRootPane().getActionMap().put("fill",fillAnswer);
 
         
     }
@@ -323,29 +330,38 @@ public class Sudoku extends javax.swing.JFrame {
     
     //Implementaion of esc key to exit program and f1 to pop out display. 
     public void keybindings(){
-        Action exit = new AbstractAction() {
+        Action exit = new AbstractAction() 
+        {
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 System.exit(0);
             }
         };
-            String WindowClose = "exit";
-            getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), WindowClose); 
-            getRootPane().getActionMap().put(WindowClose, exit);
+        String WindowClose = "exit";
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), WindowClose); 
+        getRootPane().getActionMap().put(WindowClose, exit);
 
-        
-            Action dm = new AbstractAction() {
-            public void actionPerformed(ActionEvent e) {
-                    ProjectInfo dm = new ProjectInfo();
-                    dm.setVisible(true);
-                    dispose();
-                }
-            };
-            String PopMenu = "dm";
-            getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"),PopMenu); 
-            getRootPane().getActionMap().put(PopMenu,dm);
-            
+
+        Action dm = new AbstractAction() {
+        public void actionPerformed(ActionEvent e) {
+                ProjectInfo dm = new ProjectInfo();
+                dm.setVisible(true);
+                dispose();
+            }
+        };
+        String PopMenu = "dm";
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"),PopMenu); 
+        getRootPane().getActionMap().put(PopMenu,dm);
+                  
 }
+    
+    public class FillAnswer extends AbstractAction{
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            testSetup();
+        }
+    }
     
    
     /**
@@ -387,23 +403,28 @@ public class Sudoku extends javax.swing.JFrame {
         });
         getContentPane().add(button_quit, new org.netbeans.lib.awtextra.AbsoluteConstraints(496, 296, -1, -1));
 
+        Date.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
         Date.setText("Date");
-        getContentPane().add(Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 110, 23));
+        getContentPane().add(Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 200, 23));
 
+        Time.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
         Time.setText("Time");
-        getContentPane().add(Time, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 97, 25));
+        getContentPane().add(Time, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 180, 25));
 
         title.setFont(new java.awt.Font("Ravie", 1, 18)); // NOI18N
         title.setForeground(new java.awt.Color(0, 153, 153));
         title.setText("Sudoku");
         getContentPane().add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 100, 30));
 
+        score_title.setFont(new java.awt.Font("Stencil", 0, 14)); // NOI18N
         score_title.setText("Score");
-        getContentPane().add(score_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
+        score_title.setToolTipText("score");
+        getContentPane().add(score_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 60, -1));
 
+        score.setFont(new java.awt.Font("Stencil", 0, 14)); // NOI18N
         score.setText("0");
         score.setToolTipText("Your current score");
-        getContentPane().add(score, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 30, 20));
+        getContentPane().add(score, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 40, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
